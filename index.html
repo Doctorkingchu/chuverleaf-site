@@ -220,8 +220,8 @@
     checkoutProgram: "",  // 프로그램 체크아웃 URL
     checkoutBundle:  "",  // 번들 체크아웃 URL
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
-    userCount: 6,         // 이용자 수(수동) — countUrl 이 비어있을 때만 사용. 0이면 숨김
-    countUrl: ""          // (선택) 구글폼 '응답 수'만 웹게시한 CSV 링크 → 자동 집계
+    userCount: 6,         // 수동 폴백 — countUrl 로딩 실패 시 사용
+    countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv"  // Count 탭 B2 자동 집계
   };
   (function(){
     var C = CHUVERLEAF_CONFIG;
@@ -232,17 +232,19 @@
     if(!C.checkoutBundle){ var bb=document.getElementById("buy-bundle"); if(bb){ bb.textContent="얼리버드 신청"; } }
     var uc=document.getElementById("usercount");
     if(uc){
+      var fallback=parseInt(C.userCount,10)||0;
       var show=function(n){
         if(n>0){ uc.textContent="👥 "+n.toLocaleString("ko-KR")+"명이 chuverleaf와 함께 앞서나가는 중"; }
         else { uc.style.display="none"; }
       };
       if(C.countUrl){
-        fetch(C.countUrl).then(function(r){ return r.text(); }).then(function(t){
-          var lines=t.trim().split(/\r?\n/).filter(function(x){ return x.trim().length; });
-          var n=(lines.length<=1 && /^\d+$/.test((lines[0]||"").trim())) ? parseInt(lines[0],10) : Math.max(0, lines.length-1);
-          show(n||0);
-        }).catch(function(){ show(parseInt(C.userCount,10)||0); });
-      } else { show(parseInt(C.userCount,10)||0); }
+        fetch(C.countUrl, {cache:"no-store"}).then(function(r){ return r.text(); }).then(function(t){
+          var n=0, rows=t.replace(/\r/g,"").split("\n");
+          if(rows.length>=2){ n=parseInt((rows[1].split(",")[1]||"").trim(),10)||0; }   // B2
+          if(!n){ var m=t.match(/\d+/g); if(m){ n=parseInt(m[m.length-1],10)||0; } }    // 폴백: 마지막 숫자
+          show(n||fallback);
+        }).catch(function(){ show(fallback); });
+      } else { show(fallback); }
     }
   })();
 </script>
