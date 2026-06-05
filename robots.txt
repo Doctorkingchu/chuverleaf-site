@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chuverleaf.netlify.app/sitemap.xml

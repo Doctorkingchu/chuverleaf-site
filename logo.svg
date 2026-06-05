@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1226 300" width="1226" height="300">
+  <defs>
+    <linearGradient id="g" x1="0" y1="34" x2="0" y2="286" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B9EFF"/><stop offset="1" stop-color="#4EC96A"/>
+    </linearGradient>
+  </defs>
+  <circle cx="160" cy="160" r="117.0" fill="none" stroke="url(#g)" stroke-width="18"/>
+  <g transform="rotate(-30 160 160)">
+    <path d="M160,77 Q250,160 160,243 Q70,160 160,77 Z" fill="url(#g)"/>
+    <line x1="160" y1="96" x2="160" y2="224" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" opacity="0.94"/>
+  </g>
+  <text x="332" y="214" font-family="'Times New Roman', Times, serif" font-weight="bold" font-size="190">
+    <tspan fill="#e8efe9">chuver</tspan><tspan fill="#3ecf8e">leaf</tspan>
+  </text>
+</svg>
