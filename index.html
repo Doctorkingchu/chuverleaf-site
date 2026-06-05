@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   chuverleaf 판매(랜딩) 페이지  ·  2026-06
-  ※ 결제(체크아웃) URL이 생기면 맨 아래 CHUVERLEAF_CONFIG 의 checkoutProgram/checkoutBundle 채우기.
+  ※ 모든 구매 버튼은 맨 아래 CHUVERLEAF_CONFIG 의 formUrl(구글폼 주문서)로 연결 — 결제수단 바뀌면 formUrl만 교체.
   ※ 얼리버드 마감: 2026-07-31 23:59 (KST) — 카운트다운은 #countdown data-deadline 로 관리.
   ※ SEO/OG 도메인 placeholder = chuverleaf.netlify.app (배포 후 실제 주소로 교체).
   ※ 정적 파일 — chuverleaf-landing 폴더째(또는 chuverleaf-site.zip) Netlify/GitHub Pages/Vercel 에 배포.
@@ -157,7 +157,6 @@
         <li>얼리버드 가격 고정(락인)</li>
         <li>무료 업데이트 (범위는 안내에 명시)</li>
       </ul>
-      <a class="btn-buy" id="buy-program" href="#" style="background:var(--line);color:var(--ink)">구매하기</a>
     </div>
 
     <div class="price">
@@ -173,7 +172,6 @@
         <li><b>2·3강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
         <li>평생 시청 + 추가 강의분 포함</li>
       </ul>
-      <a class="btn-buy" id="buy-lecture" href="#" style="background:var(--line);color:var(--ink)">강의 구매하기</a>
     </div>
 
     <div class="price best">
@@ -192,12 +190,15 @@
         <li><b>2·3강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
         <li>얼리버드 가격 고정 + 무료 업데이트</li>
       </ul>
-      <a class="btn-buy" id="buy-bundle" href="#">번들 구매하기</a>
     </div>
 
   </div>
-  <p class="note">가격은 USD 기준이며 결제 시 환율에 따라 원화로 청구됩니다 ·
-     다운로드 링크와 라이선스 키는 결제 후 발송됩니다.</p>
+
+  <div style="text-align:center;margin-top:34px">
+    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:16px 44px">🍃 Chuverleaf 구매하러 가기</a>
+  </div>
+  <p class="note">원하는 구성(프로그램 / 강의 / 번들)은 <b>주문서에서 선택</b>합니다 ·
+     가격은 USD 기준, 결제 시 환율에 따라 원화로 청구 · 다운로드 링크는 입금 확인 후 발송됩니다.</p>
 </div></section>
 
 <section id="faq"><div class="wrap">
@@ -231,11 +232,8 @@
 </div></footer>
 
 <script>
-  // ===== 결제(체크아웃) URL이 생기면 아래 2개를 채우세요 =====
+  // ===== 주문서(구글폼) URL — 모든 구매 버튼이 여기로 연결 =====
   const CHUVERLEAF_CONFIG = {
-    checkoutProgram: "",  // 프로그램 체크아웃 URL
-    checkoutLecture: "",  // 강의 단독 체크아웃 URL
-    checkoutBundle:  "",  // 번들 체크아웃 URL
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
     userCount: 6,         // 수동 폴백 — countUrl 로딩 실패 시 사용
     countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv"  // Count 탭 B2 자동 집계
@@ -243,12 +241,7 @@
   (function(){
     var C = CHUVERLEAF_CONFIG;
     var set = function(id,url){ var e=document.getElementById(id); if(e&&url){ e.setAttribute("href",url); } };
-    set("buy-program", C.checkoutProgram || C.formUrl);
-    set("buy-lecture", C.checkoutLecture || C.formUrl);
-    set("buy-bundle",  C.checkoutBundle  || C.formUrl);
-    if(!C.checkoutProgram){ var bp=document.getElementById("buy-program"); if(bp){ bp.textContent="얼리버드 신청"; } }
-    if(!C.checkoutLecture){ var bl=document.getElementById("buy-lecture"); if(bl){ bl.textContent="얼리버드 신청"; } }
-    if(!C.checkoutBundle){ var bb=document.getElementById("buy-bundle"); if(bb){ bb.textContent="얼리버드 신청"; } }
+    set("buy-all", C.formUrl);  // 통합 구매 버튼 → 주문서
     var uc=document.getElementById("usercount");
     if(uc){
       var fallback=parseInt(C.userCount,10)||0;
