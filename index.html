@@ -57,6 +57,7 @@
     <span class="off">80% OFF</span>
     <span class="krw2" data-usd="9.99"></span>
   </div>
+  <p class="usercount" id="usercount"></p>
 
   <!-- 얼리버드 카운트다운 (초단위) -->
   <div class="countdown" id="countdown" data-deadline="2026-07-31T23:59:59+09:00">
@@ -218,7 +219,8 @@
   const CHUVERLEAF_CONFIG = {
     checkoutProgram: "",  // 프로그램 체크아웃 URL
     checkoutBundle:  "",  // 번들 체크아웃 URL
-    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform"
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
+    userCount: 0          // 이용자 수 (0이면 자동 숨김) — 늘어나면 이 숫자만 바꾸세요
   };
   (function(){
     var C = CHUVERLEAF_CONFIG;
@@ -227,6 +229,10 @@
     set("buy-bundle",  C.checkoutBundle  || C.formUrl);
     if(!C.checkoutProgram){ var bp=document.getElementById("buy-program"); if(bp){ bp.textContent="얼리버드 신청"; } }
     if(!C.checkoutBundle){ var bb=document.getElementById("buy-bundle"); if(bb){ bb.textContent="얼리버드 신청"; } }
+    var uc=document.getElementById("usercount");
+    if(uc){ var n=parseInt(C.userCount,10)||0;
+      if(n>0){ uc.textContent="👥 이미 "+n.toLocaleString("ko-KR")+"명이 chuverleaf와 함께하고 있어요"; }
+      else { uc.style.display="none"; } }
   })();
 </script>
 
