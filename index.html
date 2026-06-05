@@ -220,7 +220,8 @@
     checkoutProgram: "",  // 프로그램 체크아웃 URL
     checkoutBundle:  "",  // 번들 체크아웃 URL
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
-    userCount: 0          // 이용자 수 (0이면 자동 숨김) — 늘어나면 이 숫자만 바꾸세요
+    userCount: 0,         // 이용자 수(수동) — countUrl 이 비어있을 때만 사용. 0이면 숨김
+    countUrl: ""          // (선택) 구글폼 '응답 수'만 웹게시한 CSV 링크 → 자동 집계
   };
   (function(){
     var C = CHUVERLEAF_CONFIG;
@@ -230,9 +231,19 @@
     if(!C.checkoutProgram){ var bp=document.getElementById("buy-program"); if(bp){ bp.textContent="얼리버드 신청"; } }
     if(!C.checkoutBundle){ var bb=document.getElementById("buy-bundle"); if(bb){ bb.textContent="얼리버드 신청"; } }
     var uc=document.getElementById("usercount");
-    if(uc){ var n=parseInt(C.userCount,10)||0;
-      if(n>0){ uc.textContent="👥 이미 "+n.toLocaleString("ko-KR")+"명이 chuverleaf와 함께하고 있어요"; }
-      else { uc.style.display="none"; } }
+    if(uc){
+      var show=function(n){
+        if(n>0){ uc.textContent="👥 "+n.toLocaleString("ko-KR")+"명이 chuverleaf와 함께 앞서나가는 중"; }
+        else { uc.style.display="none"; }
+      };
+      if(C.countUrl){
+        fetch(C.countUrl).then(function(r){ return r.text(); }).then(function(t){
+          var lines=t.trim().split(/\r?\n/).filter(function(x){ return x.trim().length; });
+          var n=(lines.length<=1 && /^\d+$/.test((lines[0]||"").trim())) ? parseInt(lines[0],10) : Math.max(0, lines.length-1);
+          show(n||0);
+        }).catch(function(){ show(parseInt(C.userCount,10)||0); });
+      } else { show(parseInt(C.userCount,10)||0); }
+    }
   })();
 </script>
 
