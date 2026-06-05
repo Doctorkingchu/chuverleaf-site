@@ -26,7 +26,7 @@ nav a.nav-cta:hover{filter:brightness(1.08);color:#06281a}
 .hero .wedge{display:inline-block;color:var(--acc);font-weight:600;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:6px 15px;margin-bottom:22px;background:rgba(62,207,142,.06)}
 .cta{margin-top:20px}
 .trust{color:var(--mut);font-size:13px;margin-top:16px}
-.usercount{color:var(--acc);font-size:14px;font-weight:600;margin:8px 0 0}
+.usercount{display:inline-block;color:var(--acc);font-size:20px;font-weight:700;letter-spacing:-.2px;margin:16px 0 0;padding:9px 20px;border:1px solid var(--line);border-radius:999px;background:rgba(62,207,142,.09)}
 .btn-buy{display:inline-block;background:var(--acc);color:#06281a;font-weight:700;padding:14px 30px;border-radius:10px;font-size:16px;transition:.15s;box-shadow:0 8px 24px rgba(62,207,142,.18)}
 .btn-buy:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .btn-ghost{display:inline-block;border:1px solid var(--line);color:var(--ink);padding:13px 26px;border-radius:10px;margin-left:10px;transition:.15s}
@@ -84,7 +84,7 @@ h2.sec{text-align:center;font-size:32px;margin:30px 0 6px;letter-spacing:-.6px}
 .uc b{display:block;margin:7px 0 4px;font-size:15px}
 .uc span{color:var(--mut);font-size:13px}
 
-.prices{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:18px}
 .price{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column}
 .price.best{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset, 0 16px 50px rgba(62,207,142,.1)}
 .badge{align-self:flex-start;background:var(--acc);color:#06281a;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:12px}

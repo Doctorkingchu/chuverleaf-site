@@ -160,6 +160,22 @@
       <a class="btn-buy" id="buy-program" href="#" style="background:var(--line);color:var(--ink)">구매하기</a>
     </div>
 
+    <div class="price">
+      <span class="badge" style="background:var(--line);color:var(--mut)">강의만</span>
+      <h3>AI 활용 강의 3강</h3>
+      <div class="amtrow">
+        <span class="amt">$14.99 <small>USD</small></span>
+      </div>
+      <div class="krw" data-usd="14.99"></div>
+      <p class="tagline">사용법 강의만 따로 필요하면.</p>
+      <ul>
+        <li><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
+        <li><b>2·3강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
+        <li>평생 시청 + 추가 강의분 포함</li>
+      </ul>
+      <a class="btn-buy" id="buy-lecture" href="#" style="background:var(--line);color:var(--ink)">강의 구매하기</a>
+    </div>
+
     <div class="price best">
       <span class="badge">BEST · 강의 3강 포함</span>
       <h3>프로그램 + 강의 3강</h3>
@@ -218,6 +234,7 @@
   // ===== 결제(체크아웃) URL이 생기면 아래 2개를 채우세요 =====
   const CHUVERLEAF_CONFIG = {
     checkoutProgram: "",  // 프로그램 체크아웃 URL
+    checkoutLecture: "",  // 강의 단독 체크아웃 URL
     checkoutBundle:  "",  // 번들 체크아웃 URL
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
     userCount: 6,         // 수동 폴백 — countUrl 로딩 실패 시 사용
@@ -227,8 +244,10 @@
     var C = CHUVERLEAF_CONFIG;
     var set = function(id,url){ var e=document.getElementById(id); if(e&&url){ e.setAttribute("href",url); } };
     set("buy-program", C.checkoutProgram || C.formUrl);
+    set("buy-lecture", C.checkoutLecture || C.formUrl);
     set("buy-bundle",  C.checkoutBundle  || C.formUrl);
     if(!C.checkoutProgram){ var bp=document.getElementById("buy-program"); if(bp){ bp.textContent="얼리버드 신청"; } }
+    if(!C.checkoutLecture){ var bl=document.getElementById("buy-lecture"); if(bl){ bl.textContent="얼리버드 신청"; } }
     if(!C.checkoutBundle){ var bb=document.getElementById("buy-bundle"); if(bb){ bb.textContent="얼리버드 신청"; } }
     var uc=document.getElementById("usercount");
     if(uc){
