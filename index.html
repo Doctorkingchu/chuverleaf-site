@@ -40,6 +40,7 @@
   <nav>
     <a href="#features">기능</a>
     <a href="#bundle">왜 번들</a>
+    <a href="#reviews">후기</a>
     <a href="#faq">FAQ</a>
     <a class="nav-cta" href="#pricing">얼리버드 구매</a>
   </nav>
@@ -136,6 +137,18 @@
     <div class="uc"><span class="ico">📄</span><b>논문 작성</b><span>LaTeX 실시간 + 참고문헌 + AI 교정</span></div>
     <div class="uc"><span class="ico">🖥️</span><b>발표자료</b><span>Beamer로 슬라이드까지 코드로</span></div>
     <div class="uc"><span class="ico">💻</span><b>코딩</b><span>AI CLI로 똑똑하게, 막힘없이</span></div>
+  </div>
+</div></section>
+
+<!-- 후기 -->
+<section id="reviews"><div class="wrap">
+  <h2 class="sec">사용자 <span class="grad">후기</span></h2>
+  <p class="sub rev-sub"><span class="ver">✓ 이메일을 남긴 실사용자 후기</span> · 닉네임만 공개돼요<span id="rev-avg-wrap" style="display:none"> · 평균 <b class="grad" id="rev-avg"></b></span></p>
+  <div class="reviews" id="reviews-list">
+    <p class="rev-empty">후기를 불러오는 중…</p>
+  </div>
+  <div style="text-align:center;margin-top:26px">
+    <a class="btn-ghost" id="write-review" href="#">★ 후기 남기기</a>
   </div>
 </div></section>
 
@@ -241,7 +254,9 @@
   const CHUVERLEAF_CONFIG = {
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
     userCount: 6,         // 수동 폴백 — countUrl 로딩 실패 시 사용
-    countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv"  // Count 탭 B2 자동 집계
+    countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv",  // Count 탭 B2 자동 집계
+    reviewFormUrl: "",    // 후기 작성 구글폼(응답자 링크) — 만들면 채우기
+    reviewsCsvUrl: ""     // '공개후기' 탭 웹게시 CSV — 만들면 채우기 (⚠ 이메일 열 절대 포함 금지)
   };
   (function(){
     var C = CHUVERLEAF_CONFIG;
@@ -304,6 +319,72 @@
         });
       })
       .catch(function(){});
+  })();
+</script>
+
+<button id="to-top" aria-label="맨 위로" title="맨 위로">↑</button>
+
+<script>
+  // ===== 맨 위로 버튼 =====
+  (function(){
+    var b=document.getElementById("to-top"); if(!b) return;
+    var t=function(){ if(window.scrollY>420){ b.classList.add("show"); } else { b.classList.remove("show"); } };
+    window.addEventListener("scroll", t, {passive:true}); t();
+    b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+  })();
+
+  // ===== 후기: 후기 작성 폼 연결 + '공개후기' 시트 CSV 렌더 (닉네임만, 이메일 비공개) =====
+  (function(){
+    var C = (typeof CHUVERLEAF_CONFIG!=="undefined") ? CHUVERLEAF_CONFIG : {};
+    var list=document.getElementById("reviews-list");
+    var wb=document.getElementById("write-review");
+    if(wb){
+      if(C.reviewFormUrl){ wb.setAttribute("href", C.reviewFormUrl); }
+      else { wb.textContent="후기 기능 준비중"; wb.style.opacity=".55"; wb.style.pointerEvents="none"; }
+    }
+    if(!list) return;
+    var esc=function(s){ return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
+    var stars=function(n){ n=Math.max(0,Math.min(5,Math.round(n||0))); var s=""; for(var i=0;i<5;i++){ s+= i<n?"★":"☆"; } return s; };
+    var empty=function(m){ list.innerHTML='<p class="rev-empty">'+m+'</p>'; };
+    if(!C.reviewsCsvUrl){ empty("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
+
+    var parseCSV=function(text){
+      text=text.replace(/\r\n/g,"\n").replace(/\r/g,"\n");
+      var rows=[],row=[],cur="",q=false,i=0,c;
+      while(i<text.length){ c=text.charAt(i);
+        if(q){ if(c==='"'){ if(text.charAt(i+1)==='"'){cur+='"';i+=2;continue;} q=false;i++; } else {cur+=c;i++;} }
+        else { if(c==='"'){q=true;i++;} else if(c===','){row.push(cur);cur="";i++;}
+          else if(c==='\n'){row.push(cur);rows.push(row);row=[];cur="";i++;} else {cur+=c;i++;} } }
+      if(cur!==""||row.length){ row.push(cur); rows.push(row); }
+      return rows;
+    };
+    var col=function(h,names){ for(var i=0;i<h.length;i++){ var x=(h[i]||"").trim().toLowerCase();
+      for(var j=0;j<names.length;j++){ if(x.indexOf(names[j])>=0) return i; } } return -1; };
+
+    fetch(C.reviewsCsvUrl,{cache:"no-store"}).then(function(r){return r.text();}).then(function(t){
+      var rows=parseCSV(t); if(rows.length<2){ empty("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
+      var h=rows[0];
+      var iN=col(h,["닉네임","닉","이름","name"]), iS=col(h,["별점","평점","star","rating"]),
+          iT=col(h,["제목","title"]), iB=col(h,["후기","내용","리뷰","review","body"]), iD=col(h,["날짜","타임","date","time"]);
+      var arr=[];
+      for(var r=1;r<rows.length;r++){ var row=rows[r]; if(!row) continue;
+        var title=iT>=0?(row[iT]||""):"", body=iB>=0?(row[iB]||""):"";
+        if(!(title.trim()||body.trim())) continue;
+        arr.push({ nick:(iN>=0?row[iN]:"")||"익명", star:iS>=0?parseFloat(row[iS]):5, title:title, body:body, date:iD>=0?(row[iD]||""):"" });
+      }
+      if(!arr.length){ empty("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
+      var sum=0,cnt=0; arr.forEach(function(x){ if(!isNaN(x.star)){ sum+=x.star; cnt++; } });
+      if(cnt){ var ae=document.getElementById("rev-avg"), aw=document.getElementById("rev-avg-wrap");
+        if(ae){ ae.textContent="★ "+(sum/cnt).toFixed(1); } if(aw){ aw.style.display="inline"; } }
+      arr.reverse();                       // 시트 누적순 → 최신 먼저
+      list.innerHTML = arr.slice(0,9).map(function(x){
+        var d=esc((x.date||"").toString().trim()); if(d.length>12){ d=d.slice(0,10); }
+        return '<div class="review-card"><div class="stars">'+stars(x.star)+'</div>'
+          +'<h4 class="r-title">'+esc(x.title)+'</h4>'
+          +'<p class="r-body">'+esc(x.body)+'</p>'
+          +'<div class="r-meta">— '+esc(x.nick)+(d?' · '+d:'')+'</div></div>';
+      }).join("");
+    }).catch(function(){ empty("후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."); });
   })();
 </script>
 </body>
