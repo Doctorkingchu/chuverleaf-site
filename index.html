@@ -148,8 +148,24 @@
     <p class="rev-empty">후기를 불러오는 중…</p>
   </div>
   <div style="text-align:center;margin-top:26px">
-    <a class="btn-ghost" id="write-review" href="#">★ 후기 남기기</a>
+    <button class="btn-buy" id="rv-toggle" type="button">✍️ 후기 작성하기</button>
   </div>
+  <form class="rv-form" id="rv-form" method="POST" target="rv-sink" hidden>
+    <div class="rv-stars" id="rv-stars" role="radiogroup" aria-label="별점 선택">
+      <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
+    </div>
+    <input type="hidden" id="rv-star" value="5">
+    <input class="rv-in" id="rv-nick" placeholder="닉네임 (공개됩니다)" maxlength="24" required autocomplete="off">
+    <input class="rv-in" id="rv-email" type="email" placeholder="이메일 (공개 안 됨 · 진짜 후기 확인용)" maxlength="80" required autocomplete="off">
+    <input class="rv-in" id="rv-title" placeholder="한 줄 제목" maxlength="50" required autocomplete="off">
+    <textarea class="rv-in" id="rv-body" placeholder="chuverleaf를 써보니 어떠셨나요?" rows="4" maxlength="1000" required></textarea>
+    <input type="text" id="rv-hp" class="rv-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="rv-foot">
+      <span class="rv-msg" id="rv-msg">이메일은 진짜 후기 확인용 · 공개되지 않아요</span>
+      <button type="submit" class="btn-buy" id="rv-submit">등록</button>
+    </div>
+  </form>
+  <iframe name="rv-sink" id="rv-sink" class="rv-sink" title="review-sink"></iframe>
 </div></section>
 
 <section id="pricing"><div class="wrap">
@@ -255,8 +271,17 @@
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
     userCount: 6,         // 수동 폴백 — countUrl 로딩 실패 시 사용
     countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv",  // Count 탭 B2 자동 집계
-    reviewFormUrl: "",    // 후기 작성 구글폼(응답자 링크) — 만들면 채우기
-    reviewsCsvUrl: ""     // '공개후기' 탭 웹게시 CSV — 만들면 채우기 (⚠ 이메일 열 절대 포함 금지)
+    reviewFormUrl: "",    // (대체) 외부 후기폼 링크 — reviewSubmit 미설정 시 버튼이 이 링크로
+    reviewsCsvUrl: "",    // '공개후기' 탭 웹게시 CSV — 만들면 채우기 (⚠ 이메일 열 절대 포함 금지)
+    // 페이지에서 바로 후기 작성 (구글폼 formResponse 제출). 폼 만들고 entry ID 채우면 활성화:
+    reviewSubmit: {
+      url:   "",  // .../formResponse  (구글폼 응답 제출 URL)
+      star:  "",  // entry.xxxxxx  별점
+      nick:  "",  // entry.xxxxxx  닉네임
+      email: "",  // entry.xxxxxx  이메일
+      title: "",  // entry.xxxxxx  제목
+      body:  ""   // entry.xxxxxx  후기
+    }
   };
   (function(){
     var C = CHUVERLEAF_CONFIG;
@@ -337,11 +362,6 @@
   (function(){
     var C = (typeof CHUVERLEAF_CONFIG!=="undefined") ? CHUVERLEAF_CONFIG : {};
     var list=document.getElementById("reviews-list");
-    var wb=document.getElementById("write-review");
-    if(wb){
-      if(C.reviewFormUrl){ wb.setAttribute("href", C.reviewFormUrl); }
-      else { wb.textContent="후기 기능 준비중"; wb.style.opacity=".55"; wb.style.pointerEvents="none"; }
-    }
     if(!list) return;
     var esc=function(s){ return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
     var stars=function(n){ n=Math.max(0,Math.min(5,Math.round(n||0))); var s=""; for(var i=0;i<5;i++){ s+= i<n?"★":"☆"; } return s; };
@@ -385,6 +405,48 @@
           +'<div class="r-meta">— '+esc(x.nick)+(d?' · '+d:'')+'</div></div>';
       }).join("");
     }).catch(function(){ empty("후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."); });
+  })();
+
+  // ===== 페이지 내 후기 작성 (구글폼 formResponse 제출, 리다이렉트 없음) =====
+  (function(){
+    var C = (typeof CHUVERLEAF_CONFIG!=="undefined") ? CHUVERLEAF_CONFIG : {};
+    var RS = C.reviewSubmit || {};
+    var toggle=document.getElementById("rv-toggle"), form=document.getElementById("rv-form"),
+        sink=document.getElementById("rv-sink"), msg=document.getElementById("rv-msg");
+    if(!toggle || !form) return;
+    var active = !!(RS.url && RS.nick && RS.body);
+    if(!active){
+      if(C.reviewFormUrl){ toggle.textContent="★ 후기 남기기"; toggle.addEventListener("click",function(){ window.open(C.reviewFormUrl,"_blank"); }); }
+      else { toggle.textContent="후기 작성 준비중"; toggle.disabled=true; toggle.style.opacity=".55"; toggle.style.cursor="default"; }
+      return;
+    }
+    form.setAttribute("action", RS.url);
+    var nm=function(id,n){ var e=document.getElementById(id); if(e&&n){ e.setAttribute("name",n); } };
+    nm("rv-star",RS.star); nm("rv-nick",RS.nick); nm("rv-email",RS.email); nm("rv-title",RS.title); nm("rv-body",RS.body);
+    toggle.addEventListener("click", function(){
+      if(form.hasAttribute("hidden")){ form.removeAttribute("hidden"); toggle.textContent="✕ 닫기"; var n=document.getElementById("rv-nick"); if(n) n.focus(); }
+      else { form.setAttribute("hidden",""); toggle.textContent="✍️ 후기 작성하기"; }
+    });
+    var sw=document.getElementById("rv-stars"), sv=document.getElementById("rv-star");
+    var sp = sw ? sw.querySelectorAll("span") : [];
+    var cur=5, paint=function(n){ for(var i=0;i<sp.length;i++){ sp[i].classList.toggle("on", i<n); } };
+    paint(5);
+    for(var i=0;i<sp.length;i++){ (function(k){
+      sp[k].addEventListener("mouseenter", function(){ paint(k+1); });
+      sp[k].addEventListener("click", function(){ cur=k+1; if(sv) sv.value=cur; paint(cur); });
+    })(i); }
+    if(sw){ sw.addEventListener("mouseleave", function(){ paint(cur); }); }
+    var sent=false;
+    form.addEventListener("submit", function(e){
+      var hp=document.getElementById("rv-hp"); if(hp && hp.value){ e.preventDefault(); return; }   // 허니팟
+      if(msg){ msg.textContent="등록 중…"; msg.style.color="var(--mut)"; }
+      sent=true;
+    });
+    if(sink){ sink.addEventListener("load", function(){
+      if(!sent) return;                       // 최초 로드 무시
+      if(msg){ msg.textContent="감사합니다! 검토 후 게시됩니다 🍃"; msg.style.color="var(--acc)"; }
+      try{ form.reset(); }catch(_){}; cur=5; if(sv) sv.value=5; paint(5); sent=false;
+    }); }
   })();
 </script>
 </body>
