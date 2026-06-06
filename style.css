@@ -146,6 +146,7 @@ footer .copyr{margin-top:10px}
 .rev-more-wrap{text-align:center;margin-top:20px}
 .rev-more-n{opacity:.6;font-weight:400}
 button.btn-buy{border:none;cursor:pointer;font-family:inherit}
+button.btn-ghost{background:transparent;cursor:pointer;font-family:inherit}
 .rv-form{max-width:560px;margin:18px auto 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;text-align:left}
 .rv-stars{display:flex;gap:6px;font-size:30px;color:var(--line);cursor:pointer;user-select:none;justify-content:center;margin-bottom:4px}
 .rv-stars span{transition:.1s;line-height:1}
