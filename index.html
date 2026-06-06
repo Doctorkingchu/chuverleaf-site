@@ -147,6 +147,7 @@
   <div class="reviews" id="reviews-list">
     <p class="rev-empty">후기를 불러오는 중…</p>
   </div>
+  <div id="reviews-more" class="rev-more-wrap"></div>
   <div style="text-align:center;margin-top:26px">
     <button class="btn-buy" id="rv-toggle" type="button">✍️ 후기 작성하기</button>
   </div>
@@ -397,13 +398,26 @@
       if(cnt){ var ae=document.getElementById("rev-avg"), aw=document.getElementById("rev-avg-wrap");
         if(ae){ ae.textContent="★ "+(sum/cnt).toFixed(1); } if(aw){ aw.style.display="inline"; } }
       arr.reverse();                       // 시트 누적순 → 최신 먼저
-      list.innerHTML = arr.slice(0,9).map(function(x){
+      var STEP=6, shown=Math.min(STEP, arr.length), moreWrap=document.getElementById("reviews-more");
+      var card=function(x){
         var d=esc((x.date||"").toString().trim()); if(d.length>12){ d=d.slice(0,10); }
         return '<div class="review-card"><div class="stars">'+stars(x.star)+'</div>'
           +'<h4 class="r-title">'+esc(x.title)+'</h4>'
           +'<p class="r-body">'+esc(x.body)+'</p>'
           +'<div class="r-meta">— '+esc(x.nick)+(d?' · '+d:'')+'</div></div>';
-      }).join("");
+      };
+      var render=function(){
+        list.innerHTML = arr.slice(0,shown).map(card).join("");
+        if(!moreWrap) return;
+        if(shown < arr.length){
+          moreWrap.innerHTML='<button class="btn-ghost" type="button" id="rev-more">후기 더 보기 ▾ <span class="rev-more-n">'+(arr.length-shown)+'개 더</span></button>';
+          document.getElementById("rev-more").onclick=function(){ shown=Math.min(arr.length, shown+STEP); render(); };
+        } else if(arr.length>STEP){
+          moreWrap.innerHTML='<button class="btn-ghost" type="button" id="rev-less">접기 ▴</button>';
+          document.getElementById("rev-less").onclick=function(){ shown=STEP; render(); var s=document.getElementById("reviews"); if(s){ s.scrollIntoView({behavior:"smooth"}); } };
+        } else { moreWrap.innerHTML=""; }
+      };
+      render();
     }).catch(function(){ empty("후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."); });
   })();
 

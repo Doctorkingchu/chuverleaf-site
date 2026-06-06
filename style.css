@@ -143,6 +143,8 @@ footer .copyr{margin-top:10px}
 .review-card .r-body{margin:0 0 16px;color:var(--mut);font-size:14px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
 .review-card .r-meta{margin-top:auto;color:var(--acc);font-size:13px;font-weight:600}
 .rev-empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:28px 0}
+.rev-more-wrap{text-align:center;margin-top:20px}
+.rev-more-n{opacity:.6;font-weight:400}
 button.btn-buy{border:none;cursor:pointer;font-family:inherit}
 .rv-form{max-width:560px;margin:18px auto 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;text-align:left}
 .rv-stars{display:flex;gap:6px;font-size:30px;color:var(--line);cursor:pointer;user-select:none;justify-content:center;margin-bottom:4px}
