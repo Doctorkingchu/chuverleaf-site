@@ -162,14 +162,18 @@ footer .copyr{margin-top:10px}
 .rb-item:last-child{border-bottom:none}
 .rb-head{width:100%;display:flex;align-items:center;gap:12px;padding:13px 16px;background:transparent;border:none;cursor:pointer;font-family:inherit;text-align:left;color:var(--ink)}
 .rb-head:hover{background:rgba(62,207,142,.05)}
-.rb-stars{color:#f5b301;font-size:13px;letter-spacing:1px;flex:0 0 auto;white-space:nowrap}
 .rb-title{flex:1 1 auto;font-weight:600;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rb-nick{flex:0 0 auto;color:var(--acc);font-size:13px;white-space:nowrap}
-.rb-date{flex:0 0 auto;color:var(--mut);font-size:12px;white-space:nowrap}
-.rb-caret{flex:0 0 auto;color:var(--mut);transition:.15s}
+.rb-caret{flex:0 0 auto;color:var(--mut);transition:.15s;font-size:13px}
 .rb-item.open .rb-caret{transform:rotate(180deg)}
-.rb-body{padding:0 16px 15px;color:var(--mut);font-size:14px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
-@media(max-width:560px){ .rb-nick,.rb-date{display:none} .rb-title{white-space:normal} }
+.rb-body{padding:2px 16px 15px;color:var(--mut);font-size:14px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.rb-meta{color:var(--acc);font-size:12.5px;font-weight:600;margin:0 0 9px}
+.rb-mstars{color:#f5b301;letter-spacing:1px}
+.rev-pages{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.rev-pages button{min-width:32px;height:32px;border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:8px;cursor:pointer;font:inherit;font-size:13px;transition:.12s}
+.rev-pages button:hover:not([disabled]):not(.on){border-color:var(--acc);color:var(--ink)}
+.rev-pages button.on{background:var(--acc);color:#06281a;border-color:var(--acc);font-weight:700;cursor:default}
+.rev-pages button[disabled]{opacity:.35;cursor:default}
+@media(max-width:560px){ .rb-title{white-space:normal} }
 button.btn-buy{border:none;cursor:pointer;font-family:inherit}
 button.btn-ghost{background:transparent;cursor:pointer;font-family:inherit}
 .rv-form{max-width:560px;margin:18px auto 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;text-align:left}

@@ -226,7 +226,10 @@
   <div id="rev-board-wrap" class="rev-board-wrap" hidden>
     <button class="btn-ghost" id="rev-board-toggle" type="button"></button>
   </div>
-  <div id="rev-board" class="rev-board" hidden></div>
+  <div id="rev-board-box" hidden>
+    <div id="rev-board" class="rev-board"></div>
+    <div id="rev-pages" class="rev-pages"></div>
+  </div>
   <div style="text-align:center;margin-top:26px">
     <button class="btn-buy" id="rv-toggle" type="button" data-i18n="rev.write">✍️ 후기 작성하기</button>
   </div>
@@ -565,26 +568,41 @@
         sumEl.hidden=false;
       }
 
-      // 전체 후기 게시판 (아코디언: 행 클릭 → 그 사람 전체 후기)
-      var board=document.getElementById("rev-board"), bwrap=document.getElementById("rev-board-wrap"), btoggle=document.getElementById("rev-board-toggle");
-      if(board && bwrap && btoggle){
-        board.innerHTML = arr.map(function(x){
+      // 전체 후기 게시판 (제목만 → 클릭하면 펼침 · 5개씩 페이지네이션)
+      var board=document.getElementById("rev-board"), bwrap=document.getElementById("rev-board-wrap"),
+          btoggle=document.getElementById("rev-board-toggle"), box=document.getElementById("rev-board-box"),
+          pages=document.getElementById("rev-pages");
+      if(board && bwrap && btoggle && box){
+        var PAGE=5, pg=0, npg=Math.ceil(arr.length/PAGE);
+        var rowHtml=function(x){
           var d=esc((x.date||"").toString().trim()); if(d.length>12){ d=d.slice(0,10); }
-          return '<div class="rb-item"><button class="rb-head" type="button">'
-            +'<span class="rb-stars">'+stars(x.star)+'</span>'
-            +'<span class="rb-title">'+esc(x.title)+'</span>'
-            +'<span class="rb-nick">'+esc(x.nick)+'</span>'
-            +'<span class="rb-date">'+d+'</span><span class="rb-caret">▾</span></button>'
-            +'<div class="rb-body" hidden>'+esc(x.body)+'</div></div>';
-        }).join("");
+          var meta='<span class="rb-mstars">'+stars(x.star)+'</span> · '+esc(x.nick)+(d?' · '+d:'');
+          return '<div class="rb-item"><button class="rb-head" type="button"><span class="rb-title">'+esc(x.title)+'</span><span class="rb-caret">▾</span></button>'
+            +'<div class="rb-body" hidden><div class="rb-meta">'+meta+'</div>'+esc(x.body)+'</div></div>';
+        };
+        var renderBoard=function(){
+          board.innerHTML = arr.slice(pg*PAGE, pg*PAGE+PAGE).map(rowHtml).join("");
+          if(!pages) return;
+          if(npg<=1){ pages.innerHTML=""; return; }
+          var html='<button class="rb-pg-nav" data-pg="'+(pg-1)+'"'+(pg===0?' disabled':'')+'>‹</button>';
+          for(var p=0;p<npg;p++){ html+='<button class="rb-pg'+(p===pg?' on':'')+'" data-pg="'+p+'">'+(p+1)+'</button>'; }
+          html+='<button class="rb-pg-nav" data-pg="'+(pg+1)+'"'+(pg===npg-1?' disabled':'')+'>›</button>';
+          pages.innerHTML=html;
+        };
         board.addEventListener("click", function(e){
           var head=e.target.closest ? e.target.closest(".rb-head") : null; if(!head) return;
           var item=head.parentNode, body=item.querySelector(".rb-body");
           var open=item.classList.toggle("open"); if(body){ body.hidden=!open; }
         });
-        var setBtn=function(){ btoggle.textContent = board.hidden ? (hpt("📋 전체 후기 보기","rev.boardOpen")+" ("+arr.length+")") : hpt("전체 후기 접기 ▴","rev.boardClose"); };
+        if(pages){ pages.addEventListener("click", function(e){
+          var b=e.target.closest ? e.target.closest("[data-pg]") : null; if(!b||b.disabled) return;
+          var np=parseInt(b.getAttribute("data-pg"),10); if(isNaN(np)||np<0||np>=npg) return;
+          pg=np; renderBoard(); board.scrollIntoView({behavior:"smooth",block:"nearest"});
+        }); }
+        renderBoard();
+        var setBtn=function(){ btoggle.textContent = box.hidden ? (hpt("📋 전체 후기 보기","rev.boardOpen")+" ("+arr.length+")") : hpt("전체 후기 접기 ▴","rev.boardClose"); };
         setBtn(); bwrap.hidden=false;
-        btoggle.onclick=function(){ board.hidden=!board.hidden; setBtn(); if(!board.hidden){ board.scrollIntoView({behavior:"smooth",block:"nearest"}); } };
+        btoggle.onclick=function(){ box.hidden=!box.hidden; setBtn(); if(!box.hidden){ box.scrollIntoView({behavior:"smooth",block:"nearest"}); } };
       }
     }).catch(function(){ empty(window.__hpT ? window.__hpT("후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.","rev.loadFail") : "후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."); });
   })();
