@@ -219,14 +219,10 @@
   <h2 class="sec" data-i18n-html="rev.h">사용자 <span class="grad">후기</span></h2>
   <p class="sub rev-sub"><span class="ver" data-i18n="rev.ver">✓ 이메일을 남긴 실사용자 후기</span><span data-i18n="rev.nickOnly"> · 닉네임만 공개돼요</span><span id="rev-avg-wrap" style="display:none"> · <span data-i18n="rev.avg">평균</span> <b class="grad" id="rev-avg"></b></span></p>
   <div id="rev-summary" class="rev-summary" hidden></div>
-  <div class="reviews" id="reviews-list">
+  <div id="reviews-list">
     <p class="rev-empty">후기를 불러오는 중…</p>
   </div>
-  <div id="reviews-more" class="rev-more-wrap"></div>
-  <div id="rev-board-wrap" class="rev-board-wrap" hidden>
-    <button class="btn-ghost" id="rev-board-toggle" type="button"></button>
-  </div>
-  <div id="rev-board-box" hidden>
+  <div id="rev-board-box">
     <div id="rev-board" class="rev-board"></div>
     <div id="rev-pages" class="rev-pages"></div>
   </div>
@@ -538,26 +534,7 @@
       var sum=0,cnt=0; arr.forEach(function(x){ if(!isNaN(x.star)){ sum+=x.star; cnt++; } });
       var avg = cnt ? (sum/cnt) : 0;
       arr.reverse();                       // 시트 누적순 → 최신 먼저
-      var STEP=6, shown=Math.min(STEP, arr.length), moreWrap=document.getElementById("reviews-more");
-      var card=function(x){
-        var d=esc((x.date||"").toString().trim()); if(d.length>12){ d=d.slice(0,10); }
-        return '<div class="review-card"><div class="stars">'+stars(x.star)+'</div>'
-          +'<h4 class="r-title">'+esc(x.title)+'</h4>'
-          +'<p class="r-body">'+esc(x.body)+'</p>'
-          +'<div class="r-meta">— '+esc(x.nick)+(d?' · '+d:'')+'</div></div>';
-      };
-      var render=function(){
-        list.innerHTML = arr.slice(0,shown).map(card).join("");
-        if(!moreWrap) return;
-        if(shown < arr.length){
-          moreWrap.innerHTML='<button class="btn-ghost" type="button" id="rev-more">후기 더 보기 ▾ <span class="rev-more-n">'+(arr.length-shown)+'개 더</span></button>';
-          document.getElementById("rev-more").onclick=function(){ shown=Math.min(arr.length, shown+STEP); render(); };
-        } else if(arr.length>STEP){
-          moreWrap.innerHTML='<button class="btn-ghost" type="button" id="rev-less">접기 ▴</button>';
-          document.getElementById("rev-less").onclick=function(){ shown=STEP; render(); var s=document.getElementById("reviews"); if(s){ s.scrollIntoView({behavior:"smooth"}); } };
-        } else { moreWrap.innerHTML=""; }
-      };
-      render();
+      list.innerHTML="";   // 로딩 메시지 제거 — 대표 카드 없이 제목 게시판만 사용
 
       // 평균 별점 요약 (눈에 띄게)
       var hpt=function(ko,k){ return window.__hpT ? window.__hpT(ko,k) : ko; };
@@ -569,10 +546,9 @@
       }
 
       // 전체 후기 게시판 (제목만 → 클릭하면 펼침 · 5개씩 페이지네이션)
-      var board=document.getElementById("rev-board"), bwrap=document.getElementById("rev-board-wrap"),
-          btoggle=document.getElementById("rev-board-toggle"), box=document.getElementById("rev-board-box"),
+      var board=document.getElementById("rev-board"), box=document.getElementById("rev-board-box"),
           pages=document.getElementById("rev-pages");
-      if(board && bwrap && btoggle && box){
+      if(board && box){
         var PAGE=5, pg=0, npg=Math.ceil(arr.length/PAGE);
         var rowHtml=function(x){
           var d=esc((x.date||"").toString().trim()); if(d.length>12){ d=d.slice(0,10); }
@@ -600,9 +576,7 @@
           pg=np; renderBoard(); board.scrollIntoView({behavior:"smooth",block:"nearest"});
         }); }
         renderBoard();
-        var setBtn=function(){ btoggle.textContent = box.hidden ? (hpt("📋 전체 후기 보기","rev.boardOpen")+" ("+arr.length+")") : hpt("전체 후기 접기 ▴","rev.boardClose"); };
-        setBtn(); bwrap.hidden=false;
-        btoggle.onclick=function(){ box.hidden=!box.hidden; setBtn(); if(!box.hidden){ box.scrollIntoView({behavior:"smooth",block:"nearest"}); } };
+        box.hidden=false;   // 카드 없이 게시판을 기본으로 펼쳐 표시
       }
     }).catch(function(){ empty(window.__hpT ? window.__hpT("후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.","rev.loadFail") : "후기를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."); });
   })();
