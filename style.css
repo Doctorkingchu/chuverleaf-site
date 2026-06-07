@@ -16,6 +16,10 @@ nav a{color:var(--mut);margin-left:20px;font-size:14px}
 nav a:hover{color:var(--ink)}
 nav a.nav-cta{background:var(--acc);color:#06281a;font-weight:700;padding:8px 16px;border-radius:8px}
 nav a.nav-cta:hover{filter:brightness(1.08);color:#06281a}
+.lang-sel{margin-left:18px;background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:inherit;font-size:13px;cursor:pointer}
+.lang-sel:hover{color:var(--ink);border-color:var(--acc)}
+.lang-sel option{background:var(--panel);color:var(--ink)}
+@media(max-width:560px){ .lang-sel{margin-left:10px} }
 
 .hero{position:relative;text-align:center;padding:74px 0 24px;overflow:hidden}
 .hero::before{content:"";position:absolute;top:-150px;left:50%;transform:translateX(-50%);

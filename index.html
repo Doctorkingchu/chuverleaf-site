@@ -38,18 +38,22 @@
 <header><div class="wrap">
   <a class="logo" href="index.html"><img src="logo.svg" alt="chuverleaf" class="logo-img"></a>
   <nav>
-    <a href="#features">기능</a>
-    <a href="#bundle">왜 번들</a>
-    <a href="#reviews">후기</a>
-    <a href="#faq">FAQ</a>
-    <a class="nav-cta" href="#pricing">얼리버드 구매</a>
+    <a href="#features" data-i18n="nav.features">기능</a>
+    <a href="#bundle" data-i18n="nav.bundle">왜 번들</a>
+    <a href="#reviews" data-i18n="nav.reviews">후기</a>
+    <a href="#faq" data-i18n="faq">FAQ</a>
+    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">얼리버드 구매</a>
+    <select id="lang-select-hp" aria-label="Language" class="lang-sel">
+      <option value="ko">🌐 한국어</option>
+      <option value="en">🌐 English</option>
+    </select>
   </nav>
 </div></header>
 
 <section class="hero"><div class="wrap">
-  <span class="wedge">🍃 내 PC 속 LaTeX·워드·한글·엑셀 작업실</span>
-  <h1>앞서나가고 싶다면,<br><span class="grad">chuverleaf</span>.</h1>
-  <p class="lede">LaTeX·워드·엑셀을 편집하고, AI로 다듬고, 저장하면 바로 미리보기 — 전부 내 PC 한 화면에서.</p>
+  <span class="wedge" data-i18n="hero.wedge">🍃 내 PC 속 LaTeX·워드·한글·엑셀 작업실</span>
+  <h1 data-i18n-html="hero.h1">앞서나가고 싶다면,<br><span class="grad">chuverleaf</span>.</h1>
+  <p class="lede" data-i18n="hero.lede">LaTeX·워드·엑셀을 편집하고, AI로 다듬고, 저장하면 바로 미리보기 — 전부 내 PC 한 화면에서.</p>
 
   <!-- 가격 임팩트 -->
   <div class="price-pop">
@@ -62,18 +66,18 @@
 
   <!-- 얼리버드 카운트다운 (초단위) -->
   <div class="countdown" id="countdown" data-deadline="2026-07-31T23:59:59+09:00">
-    <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-lab">일</span></div>
-    <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-lab">시간</span></div>
-    <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-lab">분</span></div>
-    <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-lab">초</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-lab" data-i18n="cd.d">일</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-lab" data-i18n="cd.h">시간</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-lab" data-i18n="cd.m">분</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-lab" data-i18n="cd.s">초</span></div>
   </div>
-  <p class="cd-note">⏳ 평생 1회 결제 · 얼리버드 마감 <b>7월 31일 23:59 (KST)</b></p>
+  <p class="cd-note" data-i18n-html="hero.cdNote">⏳ 평생 1회 결제 · 얼리버드 마감 <b>7월 31일 23:59 (KST)</b></p>
 
   <div class="cta">
-    <a class="btn-buy" href="#pricing">얼리버드로 구매</a>
-    <a class="btn-ghost" id="apply-form" href="#bundle">왜 번들인지 보기</a>
+    <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">얼리버드로 구매</a>
+    <a class="btn-ghost" id="apply-form" href="#bundle" data-i18n="hero.ctaWhy">왜 번들인지 보기</a>
   </div>
-  <div class="trust">✓ 로컬 전용 · ✓ 한글·Word·PPT·Excel·LaTeX · ✓ AI 패널 · ✓ 1회 결제 평생 사용</div>
+  <div class="trust" data-i18n="hero.trust">✓ 로컬 전용 · ✓ 한글·Word·PPT·Excel·LaTeX · ✓ AI 패널 · ✓ 1회 결제 평생 사용</div>
 
   <!-- 제품 미리보기 목업 -->
   <div class="mockup" aria-hidden="true">
@@ -101,174 +105,294 @@
 
 <section id="features"><div class="wrap">
   <div class="features">
-    <div class="card"><h3>📄 LaTeX 실시간</h3><p>저장 즉시 자동 컴파일·미리보기. 한글 문서는 xelatex 자동 감지, 에러 클릭 시 해당 줄로 점프.</p></div>
-    <div class="card"><h3>📝 Word · 한글 · PPT</h3><p>.docx 브라우저 렌더링 + Markdown으로 서식 보존 편집. 한글·PowerPoint는 레이아웃·폰트 그대로 PDF 미리보기.</p></div>
-    <div class="card"><h3>📊 Excel 표 편집</h3><p>엑셀을 브라우저 표로 열어 바로 편집 — <b>값만 고쳐도 서식·수식·차트는 그대로</b> 보존(원본 100% 안전).</p></div>
-    <div class="card"><h3>📚 저널·학회 양식</h3><p>IEEE·Elsevier·ACS·APS·ACM·Springer·Nature·Science·IET·Optica·Wiley… 주요 저널과 NeurIPS·CVPR·ACL 등 <b>유명 학회</b> 양식. 출판사→저널 2단계로 간편 선택, LaTeX·Word 모두.</p></div>
-    <div class="card"><h3>🎬 발표자료·서류</h3><p><b>Beamer 발표 슬라이드 5종</b>과 일반 보고서·서류 골격을 클릭 한 번에 만들어 바로 작성 시작.</p></div>
-    <div class="card"><h3>🔄 PDF로 변환</h3><p>Word·PPT·Excel을 버튼 하나로 PDF로. 엑셀은 <b>시트·범위·가로세로 1페이지 맞춤</b>까지 진짜 엑셀처럼.</p></div>
-    <div class="card"><h3>🤖 AI 패널</h3><p>설치된 Claude·Codex·Gemini CLI를 문서 옆에서 바로 호출. 글쓰기·코드·번역을 한 창에서.</p></div>
-    <div class="card"><h3>🔒 내 PC에서만</h3><p>클라우드 업로드 없음. 문서는 네 컴퓨터에만 — 미공개 논문·내부 문서도 안심.</p></div>
+    <div class="card"><h3 data-i18n="feat.latex.h">📄 LaTeX 실시간</h3><p data-i18n="feat.latex.p">저장 즉시 자동 컴파일·미리보기. 한글 문서는 xelatex 자동 감지, 에러 클릭 시 해당 줄로 점프.</p></div>
+    <div class="card"><h3 data-i18n="feat.office.h">📝 Word · 한글 · PPT</h3><p data-i18n="feat.office.p">.docx 브라우저 렌더링 + Markdown으로 서식 보존 편집. 한글·PowerPoint는 레이아웃·폰트 그대로 PDF 미리보기.</p></div>
+    <div class="card"><h3 data-i18n="feat.excel.h">📊 Excel 표 편집</h3><p data-i18n-html="feat.excel.p">엑셀을 브라우저 표로 열어 바로 편집 — <b>값만 고쳐도 서식·수식·차트는 그대로</b> 보존(원본 100% 안전).</p></div>
+    <div class="card"><h3 data-i18n="feat.journals.h">📚 저널·학회 양식</h3><p data-i18n-html="feat.journals.p">IEEE·Elsevier·ACS·APS·ACM·Springer·Nature·Science·IET·Optica·Wiley… 주요 저널과 NeurIPS·CVPR·ACL 등 <b>유명 학회</b> 양식. 출판사→저널 2단계로 간편 선택, LaTeX·Word 모두.</p></div>
+    <div class="card"><h3 data-i18n="feat.slides.h">🎬 발표자료·서류</h3><p data-i18n-html="feat.slides.p"><b>Beamer 발표 슬라이드 5종</b>과 일반 보고서·서류 골격을 클릭 한 번에 만들어 바로 작성 시작.</p></div>
+    <div class="card"><h3 data-i18n="feat.pdf.h">🔄 PDF로 변환</h3><p data-i18n-html="feat.pdf.p">Word·PPT·Excel을 버튼 하나로 PDF로. 엑셀은 <b>시트·범위·가로세로 1페이지 맞춤</b>까지 진짜 엑셀처럼.</p></div>
+    <div class="card"><h3 data-i18n="feat.ai.h">🤖 AI 패널</h3><p data-i18n="feat.ai.p">설치된 Claude·Codex·Gemini CLI를 문서 옆에서 바로 호출. 글쓰기·코드·번역을 한 창에서.</p></div>
+    <div class="card"><h3 data-i18n="feat.local.h">🔒 내 PC에서만</h3><p data-i18n="feat.local.p">클라우드 업로드 없음. 문서는 네 컴퓨터에만 — 미공개 논문·내부 문서도 안심.</p></div>
   </div>
 </div></section>
 
 <!-- 왜 번들(강의)까지 -->
 <section id="bundle"><div class="wrap why">
-  <h2 class="sec">프로그램만? <span class="grad">강의까지가 진짜다</span></h2>
-  <p class="sub">도구는 시작일 뿐 — 남들이 모르는 사용법이 격차를 만든다.</p>
+  <h2 class="sec" data-i18n-html="bundle.h">프로그램만? <span class="grad">강의까지가 진짜다</span></h2>
+  <p class="sub" data-i18n="bundle.sub">도구는 시작일 뿐 — 남들이 모르는 사용법이 격차를 만든다.</p>
 
   <div class="why-grid">
     <div class="why-card hl">
-      <span class="lab">1강 · 남들이 모르는 AI 사용법</span>
-      <h3>“챗봇에 복붙하는 시대”는 끝났다</h3>
-      <p><b class="em">Claude Code · Codex</b> — AI를 *대화창*이 아니라
+      <span class="lab" data-i18n="bundle.c1.lab">1강 · 남들이 모르는 AI 사용법</span>
+      <h3 data-i18n="bundle.c1.h">“챗봇에 복붙하는 시대”는 끝났다</h3>
+      <p data-i18n-html="bundle.c1.p"><b class="em">Claude Code · Codex</b> — AI를 *대화창*이 아니라
         <span class="em">내 파일·코드·문서를 직접 다루는 도구</span>로 쓰는 법.
         대부분은 아직 이 방식을 모른다. 이거 하나로 작업 속도가 완전히 달라진다.</p>
     </div>
     <div class="why-card">
-      <span class="lab">2~5강 · chuverleaf 200% 활용 + 공부법</span>
-      <h3>도구를 무기로 바꾸는 법</h3>
-      <p>chuverleaf + AI로 <span class="em">자료 제작 · 논문 · 발표자료 · 코딩</span>을
+      <span class="lab" data-i18n="bundle.c2.lab">2~5강 · chuverleaf 200% 활용 + 공부법</span>
+      <h3 data-i18n="bundle.c2.h">도구를 무기로 바꾸는 법</h3>
+      <p data-i18n-html="bundle.c2.p">chuverleaf + AI로 <span class="em">자료 제작 · 논문 · 발표자료 · 코딩</span>을
         현명하게, 그리고 <span class="em">chuverleaf로 공부하는 법</span>까지. Word·한글·LaTeX 어느 쪽이든.</p>
     </div>
   </div>
 
-  <p style="text-align:center;color:var(--acc);font-weight:600;font-size:15px;margin:22px 0 2px">🔄 chuverleaf가 발전하면, 업데이트로 <b>새로 추가되는 강의도 평생 무료</b>로 제공됩니다.</p>
+  <p style="text-align:center;color:var(--acc);font-weight:600;font-size:15px;margin:22px 0 2px" data-i18n-html="bundle.update">🔄 chuverleaf가 발전하면, 업데이트로 <b>새로 추가되는 강의도 평생 무료</b>로 제공됩니다.</p>
 
   <div class="usecases">
-    <div class="uc"><span class="ico">📚</span><b>자료 제작</b><span>AI로 초안 → chuverleaf로 실시간 다듬기</span></div>
-    <div class="uc"><span class="ico">🎓</span><b>학습</b><span>개념 정리·요약을 한 화면에서</span></div>
-    <div class="uc"><span class="ico">📄</span><b>논문 작성</b><span>LaTeX 실시간 + 참고문헌 + AI 교정</span></div>
-    <div class="uc"><span class="ico">🖥️</span><b>발표자료</b><span>Beamer로 슬라이드까지 코드로</span></div>
-    <div class="uc"><span class="ico">💻</span><b>코딩</b><span>AI CLI로 똑똑하게, 막힘없이</span></div>
+    <div class="uc"><span class="ico">📚</span><b data-i18n="uc.materials.b">자료 제작</b><span data-i18n="uc.materials.s">AI로 초안 → chuverleaf로 실시간 다듬기</span></div>
+    <div class="uc"><span class="ico">🎓</span><b data-i18n="uc.study.b">학습</b><span data-i18n="uc.study.s">개념 정리·요약을 한 화면에서</span></div>
+    <div class="uc"><span class="ico">📄</span><b data-i18n="uc.paper.b">논문 작성</b><span data-i18n="uc.paper.s">LaTeX 실시간 + 참고문헌 + AI 교정</span></div>
+    <div class="uc"><span class="ico">🖥️</span><b data-i18n="uc.slides.b">발표자료</b><span data-i18n="uc.slides.s">Beamer로 슬라이드까지 코드로</span></div>
+    <div class="uc"><span class="ico">💻</span><b data-i18n="uc.coding.b">코딩</b><span data-i18n="uc.coding.s">AI CLI로 똑똑하게, 막힘없이</span></div>
   </div>
 </div></section>
 
 <!-- 후기 -->
 <section id="reviews"><div class="wrap">
-  <h2 class="sec">사용자 <span class="grad">후기</span></h2>
-  <p class="sub rev-sub"><span class="ver">✓ 이메일을 남긴 실사용자 후기</span> · 닉네임만 공개돼요<span id="rev-avg-wrap" style="display:none"> · 평균 <b class="grad" id="rev-avg"></b></span></p>
+  <h2 class="sec" data-i18n-html="rev.h">사용자 <span class="grad">후기</span></h2>
+  <p class="sub rev-sub"><span class="ver" data-i18n="rev.ver">✓ 이메일을 남긴 실사용자 후기</span><span data-i18n="rev.nickOnly"> · 닉네임만 공개돼요</span><span id="rev-avg-wrap" style="display:none"> · <span data-i18n="rev.avg">평균</span> <b class="grad" id="rev-avg"></b></span></p>
   <div class="reviews" id="reviews-list">
     <p class="rev-empty">후기를 불러오는 중…</p>
   </div>
   <div id="reviews-more" class="rev-more-wrap"></div>
   <div style="text-align:center;margin-top:26px">
-    <button class="btn-buy" id="rv-toggle" type="button">✍️ 후기 작성하기</button>
+    <button class="btn-buy" id="rv-toggle" type="button" data-i18n="rev.write">✍️ 후기 작성하기</button>
   </div>
   <form class="rv-form" id="rv-form" method="POST" target="rv-sink" hidden>
     <div class="rv-stars" id="rv-stars" role="radiogroup" aria-label="별점 선택">
       <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
     </div>
     <input type="hidden" id="rv-star" value="5">
-    <input class="rv-in" id="rv-nick" placeholder="닉네임 (공개됩니다)" maxlength="24" required autocomplete="off">
-    <input class="rv-in" id="rv-email" type="email" placeholder="이메일 (공개 안 됨 · 진짜 후기 확인용)" maxlength="80" required autocomplete="off">
-    <input class="rv-in" id="rv-title" placeholder="한 줄 제목" maxlength="50" required autocomplete="off">
-    <textarea class="rv-in" id="rv-body" placeholder="chuverleaf를 써보니 어떠셨나요?" rows="4" maxlength="1000" required></textarea>
+    <input class="rv-in" id="rv-nick" placeholder="닉네임 (공개됩니다)" data-i18n-ph="rev.phNick" maxlength="24" required autocomplete="off">
+    <input class="rv-in" id="rv-email" type="email" placeholder="이메일 (공개 안 됨 · 진짜 후기 확인용)" data-i18n-ph="rev.phEmail" maxlength="80" required autocomplete="off">
+    <input class="rv-in" id="rv-title" placeholder="한 줄 제목" data-i18n-ph="rev.phTitle" maxlength="50" required autocomplete="off">
+    <textarea class="rv-in" id="rv-body" placeholder="chuverleaf를 써보니 어떠셨나요?" data-i18n-ph="rev.phBody" rows="4" maxlength="1000" required></textarea>
     <input type="text" id="rv-hp" class="rv-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="rv-foot">
-      <span class="rv-msg" id="rv-msg">이메일은 진짜 후기 확인용 · 공개되지 않아요</span>
-      <button type="submit" class="btn-buy" id="rv-submit">등록</button>
+      <span class="rv-msg" id="rv-msg" data-i18n="rev.msg">이메일은 진짜 후기 확인용 · 공개되지 않아요</span>
+      <button type="submit" class="btn-buy" id="rv-submit" data-i18n="rev.submit">등록</button>
     </div>
   </form>
   <iframe name="rv-sink" id="rv-sink" class="rv-sink" title="review-sink"></iframe>
 </div></section>
 
 <section id="pricing"><div class="wrap">
-  <h2 class="sec">가격</h2>
-  <p class="sub">얼리버드 한정 · <b>7월 31일 마감</b> — 정가 대비 최대 <b>80% 할인</b></p>
+  <h2 class="sec" data-i18n="price.h">가격</h2>
+  <p class="sub" data-i18n-html="price.sub">얼리버드 한정 · <b>7월 31일 마감</b> — 정가 대비 최대 <b>80% 할인</b></p>
   <div class="prices">
 
     <div class="price">
-      <span class="badge" style="background:var(--line);color:var(--mut)">도구만</span>
-      <h3>chuverleaf 프로그램</h3>
+      <span class="badge" style="background:var(--line);color:var(--mut)" data-i18n="price.c1.badge">도구만</span>
+      <h3 data-i18n="price.c1.h">chuverleaf 프로그램</h3>
       <div class="amtrow">
         <span class="amt">$9.99 <small>USD</small></span>
         <span class="was">$49.99</span>
         <span class="off">80% OFF</span>
       </div>
       <div class="krw" data-usd="9.99"></div>
-      <p class="tagline">미리보기 도구만 필요하면.</p>
+      <p class="tagline" data-i18n="price.c1.tag">미리보기 도구만 필요하면.</p>
       <ul>
-        <li>전 기능 평생 사용 (1회 결제)</li>
-        <li>얼리버드 가격 고정(락인)</li>
-        <li>무료 업데이트 (범위는 안내에 명시)</li>
+        <li data-i18n="price.c1.l1">전 기능 평생 사용 (1회 결제)</li>
+        <li data-i18n="price.c1.l2">얼리버드 가격 고정(락인)</li>
+        <li data-i18n="price.c1.l3">무료 업데이트 (범위는 안내에 명시)</li>
       </ul>
     </div>
 
     <div class="price">
-      <span class="badge" style="background:var(--line);color:var(--mut)">강의만</span>
-      <h3>AI·chuverleaf 강의 5강</h3>
+      <span class="badge" style="background:var(--line);color:var(--mut)" data-i18n="price.c2.badge">강의만</span>
+      <h3 data-i18n="price.c2.h">AI·chuverleaf 강의 5강</h3>
       <div class="amtrow">
         <span class="amt">$14.99 <small>USD</small></span>
       </div>
       <div class="krw" data-usd="14.99"></div>
-      <p class="tagline">사용법 강의만 따로 필요하면.</p>
+      <p class="tagline" data-i18n="price.c2.tag">사용법 강의만 따로 필요하면.</p>
       <ul>
-        <li><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
-        <li><b>2~4강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
-        <li><b>5강</b> chuverleaf 활용 공부법</li>
-        <li>평생 시청 · 업데이트 강의도 평생 무료</li>
+        <li data-i18n-html="price.c2.l1"><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
+        <li data-i18n-html="price.c2.l2"><b>2~4강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
+        <li data-i18n-html="price.c2.l3"><b>5강</b> chuverleaf 활용 공부법</li>
+        <li data-i18n="price.c2.l4">평생 시청 · 업데이트 강의도 평생 무료</li>
       </ul>
     </div>
 
     <div class="price best">
-      <span class="badge">BEST · 강의 5강 포함</span>
-      <h3>프로그램 + 강의 5강</h3>
+      <span class="badge" data-i18n="price.c3.badge">BEST · 강의 5강 포함</span>
+      <h3 data-i18n="price.c3.h">프로그램 + 강의 5강</h3>
       <div class="amtrow">
         <span class="amt">$19.99 <small>USD</small></span>
         <span class="was">$69~79</span>
-        <span class="off">한정가</span>
+        <span class="off" data-i18n="price.c3.off">한정가</span>
       </div>
       <div class="krw" data-usd="19.99"></div>
-      <p class="tagline"><b class="grad">강의가 사실상 $10</b> — 도구 + 사용법 = 진짜 변화.</p>
+      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">강의가 사실상 $10</b> — 도구 + 사용법 = 진짜 변화.</p>
       <ul>
-        <li>프로그램 전 기능 + 평생 사용</li>
-        <li><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
-        <li><b>2~4강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
-        <li><b>5강</b> chuverleaf 활용 공부법</li>
-        <li><b class="grad">업데이트 강의도 평생 무료</b> · 얼리버드 가격 고정</li>
+        <li data-i18n="price.c3.l1">프로그램 전 기능 + 평생 사용</li>
+        <li data-i18n-html="price.c3.l2"><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
+        <li data-i18n-html="price.c3.l3"><b>2~4강</b> chuverleaf 활용 — 자료·논문·발표·코딩</li>
+        <li data-i18n-html="price.c3.l4"><b>5강</b> chuverleaf 활용 공부법</li>
+        <li data-i18n-html="price.c3.l5"><b class="grad">업데이트 강의도 평생 무료</b> · 얼리버드 가격 고정</li>
       </ul>
     </div>
 
   </div>
 
   <div style="text-align:center;margin-top:34px">
-    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:16px 44px">🍃 Chuverleaf 구매하러 가기</a>
+    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:16px 44px" data-i18n="price.buyAll">🍃 Chuverleaf 구매하러 가기</a>
   </div>
-  <p class="note">원하는 구성(프로그램 / 강의 / 번들)은 <b>주문서에서 선택</b>합니다 ·
+  <p class="note" data-i18n-html="price.note">원하는 구성(프로그램 / 강의 / 번들)은 <b>주문서에서 선택</b>합니다 ·
      가격은 USD 기준, 결제 시 환율에 따라 원화로 청구 · 다운로드 링크는 입금 확인 후 발송됩니다.</p>
 </div></section>
 
 <section id="faq"><div class="wrap">
-  <h2 class="sec">자주 묻는 질문</h2>
+  <h2 class="sec" data-i18n="faq.h">자주 묻는 질문</h2>
   <div class="faq">
-    <details><summary>강의는 어떤 내용인가요?</summary>
-      <p>총 <b>5강</b>입니다. <b>1강</b> Claude Code·Codex 같은 AI CLI를 *터미널에서 파일·코드를 직접 다루는* 방식으로 쓰는 법.
+    <details><summary data-i18n="faq.q1">강의는 어떤 내용인가요?</summary>
+      <p data-i18n-html="faq.a1">총 <b>5강</b>입니다. <b>1강</b> Claude Code·Codex 같은 AI CLI를 *터미널에서 파일·코드를 직접 다루는* 방식으로 쓰는 법.
          <b>2~4강</b> chuverleaf로 Word/한글/LaTeX 문서를 실시간 미리보기하며 자료·논문·발표자료를 만드는 법.
          <b>5강</b> chuverleaf로 효율적으로 공부하는 법. 또한 앞으로 업데이트로 추가되는 강의도 <b>평생 무료</b>로 제공됩니다.</p></details>
-    <details><summary>설치하려면 뭐가 필요한가요?</summary>
-      <p>LaTeX엔 TeX 배포판(TeX Live 권장), Word·한글·PPT·Excel 변환엔 해당 프로그램(MS Office·한컴오피스 등)이 필요합니다.
+    <details><summary data-i18n="faq.q2">설치하려면 뭐가 필요한가요?</summary>
+      <p data-i18n="faq.a2">LaTeX엔 TeX 배포판(TeX Live 권장), Word·한글·PPT·Excel 변환엔 해당 프로그램(MS Office·한컴오피스 등)이 필요합니다.
          엑셀 표 편집·미리보기는 추가 설치 없이 동작합니다. chuverleaf는 이들을 번들하지 않고 설치본을 호출합니다.</p></details>
-    <details><summary>구독인가요?</summary>
-      <p>아니요. 1회 결제 후 평생 사용입니다. 프로그램 업데이트는 물론, 업데이트로 추가되는 강의까지 평생 무료로 제공됩니다. 얼리버드 구매자는 가격이 고정됩니다.</p></details>
-    <details><summary>결제·환불은요?</summary>
-      <p>가격은 USD 기준이며 결제 시 환율에 따라 원화로 청구됩니다. 환불은
+    <details><summary data-i18n="faq.q3">구독인가요?</summary>
+      <p data-i18n="faq.a3">아니요. 1회 결제 후 평생 사용입니다. 프로그램 업데이트는 물론, 업데이트로 추가되는 강의까지 평생 무료로 제공됩니다. 얼리버드 구매자는 가격이 고정됩니다.</p></details>
+    <details><summary data-i18n="faq.q4">결제·환불은요?</summary>
+      <p data-i18n-html="faq.a4">가격은 USD 기준이며 결제 시 환율에 따라 원화로 청구됩니다. 환불은
          <a href="refund.html">환불정책</a>을 참고하세요.</p></details>
   </div>
 </div></section>
 
 <footer><div class="wrap">
   <div class="legal-links">
-    <a href="refund.html">환불정책</a>
-    <a href="privacy.html">개인정보처리방침</a>
-    <a href="terms.html">이용약관(EULA)</a>
-    <a href="mailto:yeonouk1@snu.ac.kr">문의</a>
+    <a href="refund.html" data-i18n="footer.refund">환불정책</a>
+    <a href="privacy.html" data-i18n="footer.privacy">개인정보처리방침</a>
+    <a href="terms.html" data-i18n="footer.terms">이용약관(EULA)</a>
+    <a href="mailto:yeonouk1@snu.ac.kr" data-i18n="footer.contact">문의</a>
   </div>
   <!-- 전자상거래법: 출시 전 아래 판매자 정보를 반드시 채울 것 -->
   <div class="seller">상호 ____________ · 대표 추연욱 · 사업자등록번호 ___-__-_____ ·
     통신판매업신고 제____호 · 주소 ____________ · 연락처 ____________ · 이메일 yeonouk1@snu.ac.kr</div>
   <div class="copyr">© 2026 Yeonouk Chu. chuverleaf. All rights reserved.</div>
 </div></footer>
+
+<!-- ===== 홈페이지 언어 전환 (한국어 / English) — data-i18n* + 영어 맵 ===== -->
+<script>
+(function(){
+  var KEY = "chuverleaf:hp-lang";
+  var EN = {
+    "_title": "chuverleaf — Stay ahead. Local LaTeX·Word·Hangul·PPT·Excel live preview + AI",
+    "nav.features":"Features", "nav.bundle":"Why bundle", "nav.reviews":"Reviews", "faq":"FAQ", "nav.buy":"Get early-bird",
+    "hero.wedge":"🍃 Your LaTeX · Word · Hangul · Excel studio — on your PC",
+    "hero.h1":"Want to stay ahead?<br><span class=\"grad\">chuverleaf</span>.",
+    "hero.lede":"Edit LaTeX, Word and Excel, polish with AI, and preview the instant you save — all on one screen, on your PC.",
+    "cd.d":"days", "cd.h":"hrs", "cd.m":"min", "cd.s":"sec",
+    "hero.cdNote":"⏳ One-time payment, yours for life · Early-bird ends <b>July 31, 23:59 (KST)</b>",
+    "hero.ctaBuy":"Buy early-bird", "hero.ctaWhy":"See why the bundle",
+    "hero.trust":"✓ Local-only · ✓ Hangul·Word·PPT·Excel·LaTeX · ✓ AI panel · ✓ Pay once, use forever",
+    "feat.latex.h":"📄 Live LaTeX",
+    "feat.latex.p":"Auto-compiles and previews the moment you save. Korean docs auto-pick xelatex; click an error to jump to its line.",
+    "feat.office.h":"📝 Word · Hangul · PPT",
+    "feat.office.p":".docx rendered in the browser + edit with formatting preserved via Markdown. Hangul and PowerPoint preview as PDF with layout and fonts intact.",
+    "feat.excel.h":"📊 Excel grid editing",
+    "feat.excel.p":"Open Excel as a browser grid and edit in place — <b>change only the values; formatting, formulas and charts stay exactly as they were</b> (original 100% safe).",
+    "feat.journals.h":"📚 Journal & conference templates",
+    "feat.journals.p":"IEEE·Elsevier·ACS·APS·ACM·Springer·Nature·Science·IET·Optica·Wiley… major journals plus <b>top conferences</b> like NeurIPS·CVPR·ACL. Pick publisher → journal in two steps, in LaTeX or Word.",
+    "feat.slides.h":"🎬 Slides & documents",
+    "feat.slides.p":"<b>5 Beamer slide themes</b> and plain report/document skeletons — generated in one click, ready to write.",
+    "feat.pdf.h":"🔄 Convert to PDF",
+    "feat.pdf.p":"Word·PPT·Excel to PDF in one button. For Excel, choose <b>sheets, range and fit-to-one-page</b> — just like Excel itself.",
+    "feat.ai.h":"🤖 AI panel",
+    "feat.ai.p":"Call your installed Claude·Codex·Gemini CLI right next to your document. Writing, code, translation — all in one window.",
+    "feat.local.h":"🔒 On your PC only",
+    "feat.local.p":"No cloud upload. Your documents stay on your computer — safe even for unpublished papers and internal files.",
+    "bundle.h":"Just the tool? <span class=\"grad\">The course is where it's at</span>",
+    "bundle.sub":"The tool is only the start — it's the know-how others don't have that creates the gap.",
+    "bundle.c1.lab":"Lesson 1 · The AI workflow most people don't know",
+    "bundle.c1.h":"The “paste-into-a-chatbot” era is over",
+    "bundle.c1.p":"<b class=\"em\">Claude Code · Codex</b> — using AI not as a *chat box* but as <span class=\"em\">a tool that works directly on your files, code and documents</span>. Most people still don't know this. This one thing completely changes how fast you work.",
+    "bundle.c2.lab":"Lessons 2–5 · Master chuverleaf + how to study with it",
+    "bundle.c2.h":"Turning a tool into a weapon",
+    "bundle.c2.p":"Use chuverleaf + AI to <span class=\"em\">create materials, papers, slides and code</span> the smart way — plus <span class=\"em\">how to study with chuverleaf</span>. Word, Hangul or LaTeX, either way.",
+    "bundle.update":"🔄 As chuverleaf grows, <b>new lessons added in updates are free for life</b>, too.",
+    "uc.materials.b":"Create materials", "uc.materials.s":"AI draft → refine live in chuverleaf",
+    "uc.study.b":"Study", "uc.study.s":"Organize and summarize on one screen",
+    "uc.paper.b":"Write papers", "uc.paper.s":"Live LaTeX + references + AI proofreading",
+    "uc.slides.b":"Presentations", "uc.slides.s":"Slides as code with Beamer",
+    "uc.coding.b":"Coding", "uc.coding.s":"Smart and unblocked with the AI CLI",
+    "uc.count":"👥 {n} people getting ahead with chuverleaf", "rev.loading":"Loading reviews…", "rev.empty":"No reviews yet — be the first! 🍃",
+    "rev.h":"User <span class=\"grad\">reviews</span>",
+    "rev.ver":"✓ Verified reviews from real users who left an email", "rev.nickOnly":" · only nicknames are shown", "rev.avg":"avg",
+    "rev.write":"✍️ Write a review",
+    "rev.phNick":"Nickname (shown publicly)", "rev.phEmail":"Email (never shown · to verify it's a real review)",
+    "rev.phTitle":"One-line title", "rev.phBody":"How was chuverleaf for you?",
+    "rev.msg":"Email is only to verify real reviews · never shown", "rev.submit":"Submit",
+    "price.h":"Pricing",
+    "price.sub":"Early-bird only · <b>ends July 31</b> — up to <b>80% off</b> list price",
+    "price.c1.badge":"Tool only", "price.c1.h":"chuverleaf program", "price.c1.tag":"If you just need the preview tool.",
+    "price.c1.l1":"All features, forever (one-time payment)", "price.c1.l2":"Early-bird price locked in",
+    "price.c1.l3":"Free updates (scope stated in the guide)",
+    "price.c2.badge":"Course only", "price.c2.h":"AI · chuverleaf course (5 lessons)", "price.c2.tag":"If you only want the how-to course.",
+    "price.c2.l1":"<b>L1</b> AI CLI (Claude·Codex) — the usage others don't know",
+    "price.c2.l2":"<b>L2–4</b> Using chuverleaf — materials, papers, slides, coding",
+    "price.c2.l3":"<b>L5</b> How to study with chuverleaf",
+    "price.c2.l4":"Lifetime access · new lessons free for life",
+    "price.c3.badge":"BEST · includes the 5-lesson course", "price.c3.h":"Program + 5-lesson course", "price.c3.off":"Limited price",
+    "price.c3.tag":"<b class=\"grad\">The course is effectively $10</b> — tool + know-how = real change.",
+    "price.c3.l1":"All program features + lifetime use",
+    "price.c3.l2":"<b>L1</b> AI CLI (Claude·Codex) — the usage others don't know",
+    "price.c3.l3":"<b>L2–4</b> Using chuverleaf — materials, papers, slides, coding",
+    "price.c3.l4":"<b>L5</b> How to study with chuverleaf",
+    "price.c3.l5":"<b class=\"grad\">New lessons free for life</b> · early-bird price locked in",
+    "price.buyAll":"🍃 Go to checkout",
+    "price.note":"Choose your plan (program / course / bundle) <b>on the order form</b> · prices are in USD, billed in KRW at the current rate · the download link is sent after payment is confirmed.",
+    "faq.h":"Frequently asked questions",
+    "faq.q1":"What's in the course?",
+    "faq.a1":"<b>5 lessons.</b> <b>L1</b> how to use AI CLIs like Claude Code·Codex to *work directly on files and code in the terminal*. <b>L2–4</b> making materials, papers and slides while previewing Word/Hangul/LaTeX live in chuverleaf. <b>L5</b> how to study efficiently with chuverleaf. New lessons added in future updates are <b>free for life</b>, too.",
+    "faq.q2":"What do I need to install?",
+    "faq.a2":"LaTeX needs a TeX distribution (TeX Live recommended); Word·Hangul·PPT·Excel conversion needs the matching app (MS Office, Hancom Office, etc.). Excel grid editing and preview work with no extra install. chuverleaf doesn't bundle these — it calls your installed copies.",
+    "faq.q3":"Is it a subscription?",
+    "faq.a3":"No. Pay once, use forever. Program updates — and lessons added in updates — are free for life. Early-bird buyers keep their locked-in price.",
+    "faq.q4":"Payment & refunds?",
+    "faq.a4":"Prices are in USD and billed in KRW at the current exchange rate. For refunds, see our <a href=\"refund.html\">refund policy</a>.",
+    "footer.refund":"Refund policy", "footer.privacy":"Privacy policy", "footer.terms":"Terms (EULA)", "footer.contact":"Contact"
+  };
+  var nodes = document.querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-ph],[data-i18n-title]");
+  nodes.forEach(function(el){
+    if (el.hasAttribute("data-i18n"))       el.setAttribute("data-ko", el.textContent);
+    if (el.hasAttribute("data-i18n-html"))  el.setAttribute("data-ko-html", el.innerHTML);
+    if (el.hasAttribute("data-i18n-ph"))    el.setAttribute("data-ko-ph", el.getAttribute("placeholder") || "");
+    if (el.hasAttribute("data-i18n-title")) el.setAttribute("data-ko-title", el.getAttribute("title") || "");
+  });
+  var koTitle = document.title;
+  function val(k, fb){ return (EN[k] != null) ? EN[k] : fb; }
+  function apply(lang){
+    var en = (lang === "en");
+    document.documentElement.lang = en ? "en" : "ko";
+    window.__hpLang = lang;
+    nodes.forEach(function(el){
+      if (el.hasAttribute("data-i18n"))
+        el.textContent = en ? val(el.getAttribute("data-i18n"), el.getAttribute("data-ko")) : el.getAttribute("data-ko");
+      if (el.hasAttribute("data-i18n-html"))
+        el.innerHTML = en ? val(el.getAttribute("data-i18n-html"), el.getAttribute("data-ko-html")) : el.getAttribute("data-ko-html");
+      if (el.hasAttribute("data-i18n-ph"))
+        el.setAttribute("placeholder", en ? val(el.getAttribute("data-i18n-ph"), el.getAttribute("data-ko-ph")) : el.getAttribute("data-ko-ph"));
+      if (el.hasAttribute("data-i18n-title"))
+        el.setAttribute("title", en ? val(el.getAttribute("data-i18n-title"), el.getAttribute("data-ko-title")) : el.getAttribute("data-ko-title"));
+    });
+    document.title = en ? val("_title", koTitle) : koTitle;
+  }
+  // Helper so the dynamic scripts (usercount / reviews) can localize too.
+  window.__hpT = function(ko, key){ return (window.__hpLang === "en" && EN[key] != null) ? EN[key] : ko; };
+  var saved = localStorage.getItem(KEY);
+  if (saved !== "en" && saved !== "ko") {
+    var nl = (navigator.language || "").toLowerCase();
+    saved = (nl.indexOf("ko") === 0) ? "ko" : (nl.indexOf("en") === 0 ? "en" : "ko");
+  }
+  var lang = (saved === "en") ? "en" : "ko";
+  var sel = document.getElementById("lang-select-hp");
+  if (sel) { sel.value = lang; sel.addEventListener("change", function(){ localStorage.setItem(KEY, sel.value); apply(sel.value); }); }
+  apply(lang);
+})();
+</script>
 
 <script>
   // ===== 주문서(구글폼) URL — 모든 구매 버튼이 여기로 연결 =====
@@ -296,7 +420,10 @@
     if(uc){
       var fallback=parseInt(C.userCount,10)||0;
       var show=function(n){
-        if(n>0){ uc.textContent="👥 "+n.toLocaleString("ko-KR")+"명이 chuverleaf와 함께 앞서나가는 중"; }
+        if(n>0){
+          var tmpl = (window.__hpT ? window.__hpT("👥 {n}명이 chuverleaf와 함께 앞서나가는 중", "uc.count") : "👥 {n}명이 chuverleaf와 함께 앞서나가는 중");
+          uc.textContent = tmpl.replace("{n}", n.toLocaleString());
+        }
         else { uc.style.display="none"; }
       };
       if(C.countUrl){
@@ -371,7 +498,7 @@
     var esc=function(s){ return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
     var stars=function(n){ n=Math.max(0,Math.min(5,Math.round(n||0))); var s=""; for(var i=0;i<5;i++){ s+= i<n?"★":"☆"; } return s; };
     var empty=function(m){ list.innerHTML='<p class="rev-empty">'+m+'</p>'; };
-    if(!C.reviewsCsvUrl){ empty("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
+    if(!C.reviewsCsvUrl){ empty(window.__hpT ? window.__hpT("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃","rev.empty") : "아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
 
     var parseCSV=function(text){
       text=text.replace(/\r\n/g,"\n").replace(/\r/g,"\n");
@@ -387,7 +514,7 @@
       for(var j=0;j<names.length;j++){ if(x.indexOf(names[j])>=0) return i; } } return -1; };
 
     fetch(C.reviewsCsvUrl,{cache:"no-store"}).then(function(r){return r.text();}).then(function(t){
-      var rows=parseCSV(t); if(rows.length<2){ empty("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
+      var rows=parseCSV(t); if(rows.length<2){ empty(window.__hpT ? window.__hpT("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃","rev.empty") : "아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
       var h=rows[0];
       var iN=col(h,["닉네임","닉","이름","name"]), iS=col(h,["별점","평점","star","rating"]),
           iT=col(h,["제목","title"]), iB=col(h,["후기","내용","리뷰","review","body"]), iD=col(h,["날짜","타임","date","time"]);
@@ -397,7 +524,7 @@
         if(!(title.trim()||body.trim())) continue;
         arr.push({ nick:(iN>=0?row[iN]:"")||"익명", star:iS>=0?parseFloat(row[iS]):5, title:title, body:body, date:iD>=0?(row[iD]||""):"" });
       }
-      if(!arr.length){ empty("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
+      if(!arr.length){ empty(window.__hpT ? window.__hpT("아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃","rev.empty") : "아직 후기가 없어요. 첫 후기를 남겨주세요! 🍃"); return; }
       var sum=0,cnt=0; arr.forEach(function(x){ if(!isNaN(x.star)){ sum+=x.star; cnt++; } });
       if(cnt){ var ae=document.getElementById("rev-avg"), aw=document.getElementById("rev-avg-wrap");
         if(ae){ ae.textContent="★ "+(sum/cnt).toFixed(1); } if(aw){ aw.style.display="inline"; } }
