@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   chuverleaf 판매(랜딩) 페이지  ·  2026-07 리디자인 (Fresh Energy)
-  ※ 모든 구매 버튼은 맨 아래 CHUVERLEAF_CONFIG 의 formUrl(구글폼 주문서)로 연결 — 결제수단 바뀌면 formUrl만 교체.
+  ※ 결제: 카드=Polar 체크아웃(CHUVERLEAF_CONFIG.polar, 상품별) · 계좌이체=구글폼(formUrl, 국내 전용·영어모드 숨김).
   ※ 얼리버드 마감: 2026-07-31 23:59 (KST) — 카운트다운은 #countdown data-deadline 로 관리.
   ※ 가격: 정가 $19.99 → 얼리버드 $9.99 (50% OFF) · 마감 후 구독제 전환 예정.
   ※ 정적 파일 — 폴더째 Netlify/GitHub Pages/Vercel 에 배포.
@@ -199,6 +199,11 @@
         <li data-i18n="price.c1.l2">마감 후 구독제 — 얼리버드는 평생 소장</li>
         <li data-i18n="price.c1.l3">무료 업데이트 (범위는 안내에 명시)</li>
       </ul>
+      <div class="paybtns">
+        <a class="btn-buy pay-card" id="pay-card-program" href="#" data-i18n="pay.card">💳 카드로 구매</a>
+        <a class="pay-bank" id="pay-bank-program" href="#" data-i18n="pay.bank">🏦 계좌이체로 주문 (원화)</a>
+      </div>
+
     </div>
 
     <div class="price">
@@ -215,6 +220,11 @@
         <li data-i18n-html="price.c2.l3"><b>5강</b> chuverleaf 활용 공부법</li>
         <li data-i18n="price.c2.l4">평생 시청 · 업데이트 강의도 평생 무료</li>
       </ul>
+      <div class="paybtns">
+        <a class="btn-buy pay-card" id="pay-card-course" href="#" data-i18n="pay.card">💳 카드로 구매</a>
+        <a class="pay-bank" id="pay-bank-course" href="#" data-i18n="pay.bank">🏦 계좌이체로 주문 (원화)</a>
+      </div>
+
     </div>
 
     <div class="price best">
@@ -234,15 +244,20 @@
         <li data-i18n-html="price.c3.l4"><b>5강</b> chuverleaf 활용 공부법</li>
         <li data-i18n-html="price.c3.l5"><b class="grad">업데이트 강의도 평생 무료</b> · 얼리버드 가격 고정</li>
       </ul>
+      <div class="paybtns">
+        <a class="btn-buy pay-card" id="pay-card-bundle" href="#" data-i18n="pay.card">💳 카드로 구매</a>
+        <a class="pay-bank" id="pay-bank-bundle" href="#" data-i18n="pay.bank">🏦 계좌이체로 주문 (원화)</a>
+      </div>
+
     </div>
 
   </div>
 
   <div style="text-align:center;margin-top:34px">
-    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:17px 46px" data-i18n="price.buyAll">🍃 Chuverleaf 구매하러 가기</a>
+    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:17px 46px" data-i18n="price.buyAll">🍃 베스트 구성(번들)으로 바로 결제</a>
   </div>
-  <p class="note" data-i18n-html="price.note">원하는 구성(프로그램 / 강의 / 번들)은 <b>주문서에서 선택</b>합니다 ·
-     가격은 USD 기준, 결제 시 환율에 따라 원화로 청구 · 다운로드 링크는 입금 확인 후 발송됩니다.</p>
+  <p class="note" data-i18n-html="price.note">💳 카드 결제는 즉시 완료(달러·원화 표시) · 🏦 계좌이체는 주문서 제출 후 입금 확인 ·
+     어떤 방식이든 <b>24시간 내 메일로 다운로드 링크</b>를 보내드립니다 · 7일 청약철회 가능.</p>
 </div></section>
 
 <!-- 후기 -->
@@ -316,6 +331,7 @@
 (function(){
   var KEY = "chuverleaf:hp-lang";
   var EN = {
+    "pay.card": "💳 Pay by card", "pay.bank": "🏦 Bank transfer (KRW, Korea only)",
     "mq.1": "📄 Live LaTeX compile", "mq.2": "📝 HWP·Word·PPT preview",
     "mq.3": "📊 Excel formats & formulas 100% kept", "mq.4": "🤖 Claude·Codex AI panel",
     "mq.5": "🔒 No cloud upload", "mq.6": "📚 IEEE·NeurIPS templates built-in",
@@ -399,8 +415,8 @@
     "price.c3.l3":"<b>L2–4</b> Using chuverleaf — materials, papers, slides, coding",
     "price.c3.l4":"<b>L5</b> How to study with chuverleaf",
     "price.c3.l5":"<b class=\"grad\">New lessons free for life</b> · early-bird price locked in",
-    "price.buyAll":"🍃 Go to checkout",
-    "price.note":"Choose your plan (program / course / bundle) <b>on the order form</b> · prices are in USD, billed in KRW at the current rate · the download link is sent after payment is confirmed.",
+    "price.buyAll": "🍃 Checkout the best bundle now",
+    "price.note": '💳 Card payments complete instantly · your download link is emailed <b>within 24 hours</b> · 7-day withdrawal (refund) available.',
     "faq.h":"Frequently asked questions",
     "faq.q1":"What's in the course?",
     "faq.a1":"<b>5 lessons.</b> <b>L1</b> how to use AI CLIs like Claude Code·Codex to *work directly on files and code in the terminal*. <b>L2–4</b> making materials, papers and slides while previewing Word/Hangul/LaTeX live in chuverleaf. <b>L5</b> how to study efficiently with chuverleaf. New lessons added in future updates are <b>free for life</b>, too.",
@@ -455,6 +471,11 @@
   // ===== 주문서(구글폼) URL — 모든 구매 버튼이 여기로 연결 =====
   const CHUVERLEAF_CONFIG = {
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
+    polar: {  // Polar(MOR) 카드결제 체크아웃 — 상품별 링크
+      program: "https://buy.polar.sh/polar_cl_d8glcaReDdq3kPh4gSDKCuE9Lop6D1GkDboDA1h4GGx",
+      course:  "https://buy.polar.sh/polar_cl_H52BtelXtZ46BOymVNcNoZX4i28qyKnTS836M2Mkg5p",
+      bundle:  "https://buy.polar.sh/polar_cl_6sHvOGu7i5Af3UzKE4mmu5NfbaoX2GxuOfNMO1nHdDF"
+    },
     userCount: 6,         // 수동 폴백 — countUrl 로딩 실패 시 사용
     countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv",  // Count 탭 B2 자동 집계
     reviewFormUrl: "",    // (대체) 외부 후기폼 링크 — reviewSubmit 미설정 시 버튼이 이 링크로
@@ -472,7 +493,16 @@
   (function(){
     var C = CHUVERLEAF_CONFIG;
     var set = function(id,url){ var e=document.getElementById(id); if(e&&url){ e.setAttribute("href",url); } };
-    set("buy-all", C.formUrl);  // 통합 구매 버튼 → 주문서
+    // 카드결제(Polar) — 카드별 상품 링크 / 계좌이체 — 구글폼 주문서
+    ["program","course","bundle"].forEach(function(k){
+      if (C.polar) set("pay-card-"+k, C.polar[k]);
+      set("pay-bank-"+k, C.formUrl);
+    });
+    set("buy-all", C.polar ? C.polar.bundle : C.formUrl);  // 통합 버튼 → 번들 카드결제
+    // 영어 모드: 계좌이체(국내 전용) 버튼 숨김
+    var langSelPay = document.getElementById("lang-select-hp");
+    var markEn = function(){ document.body.classList.toggle("en-mode", !!(langSelPay && langSelPay.value === "en")); };
+    if (langSelPay) { markEn(); langSelPay.addEventListener("change", markEn); }
     var uc=document.getElementById("usercount");
     if(uc){
       var fallback=parseInt(C.userCount,10)||0;

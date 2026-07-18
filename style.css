@@ -259,3 +259,13 @@ footer .copyr{margin-top:10px}
   .cc-lb .cc-lb-p{left:calc(50% - 58px)}
   .cc-lb .cc-lb-n{right:calc(50% - 58px)}
 }
+
+/* ── 가격카드 결제 버튼 (카드=Polar / 계좌이체=폼) ── */
+.paybtns { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.paybtns .pay-card { display: block; text-align: center; font-size: 15px; padding: 12px 10px; }
+.paybtns .pay-bank {
+  display: block; text-align: center; font-size: 12.5px; padding: 9px 10px;
+  border: 1px dashed #9aa4ad; border-radius: 10px; color: #55606a; text-decoration: none;
+}
+.paybtns .pay-bank:hover { border-color: #1E7E45; color: #1E7E45; }
+.en-mode .pay-bank { display: none; }
