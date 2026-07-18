@@ -225,3 +225,37 @@ footer .copyr{margin-top:10px}
   .usercount{left:0}
   h2.sec{font-size:29px}
 }
+
+/* ── 카드뉴스 캐러셀 (#cards) — 중앙 스포트라이트 ── */
+#cards .cc-wrap{position:relative;margin-top:26px}
+#cards .cc-wrap::before{content:"";position:absolute;inset:4% 10%;background:radial-gradient(50% 62% at 50% 46%,rgba(78,201,106,.16),rgba(59,158,255,.08) 58%,transparent 76%);pointer-events:none;filter:blur(6px)}
+.cc-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px calc(50% - min(170px,39vw)) 22px;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative}
+.cc-track::-webkit-scrollbar{display:none}
+.cc-card{flex:0 0 auto;width:min(340px,78vw);aspect-ratio:4/5;object-fit:cover;border-radius:18px;scroll-snap-align:center;box-shadow:0 18px 44px rgba(12,24,16,.18);border:1px solid rgba(12,24,16,.08);cursor:zoom-in;background:#fff;transition:transform .35s ease,opacity .3s ease,box-shadow .3s ease}
+.cc-card.is-side{transform:scale(.88);opacity:.45;box-shadow:0 8px 20px rgba(12,24,16,.1)}
+.cc-card:hover{box-shadow:0 22px 54px rgba(12,24,16,.24)}
+.cc-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:46px;height:46px;border-radius:50%;border:none;background:var(--dark);color:#fff;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 10px 24px rgba(12,24,16,.28);transition:.15s}
+.cc-arrow:hover{background:linear-gradient(135deg,#3B9EFF,#4EC96A);transform:translateY(-50%) scale(1.07)}
+.cc-prev{left:2px}.cc-next{right:2px}
+.cc-foot{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:2px}
+.cc-dots{display:flex;gap:7px}
+.cc-dot{width:8px;height:8px;border-radius:999px;border:none;padding:0;background:var(--line);cursor:pointer;transition:.2s}
+.cc-dot:hover{background:var(--soft)}
+.cc-dot.on{width:24px;background:linear-gradient(135deg,#3B9EFF,#4EC96A)}
+.cc-count{background:var(--dark);color:#7bf0b6;font-weight:700;font-size:12.5px;padding:4px 12px;border-radius:999px;font-variant-numeric:tabular-nums}
+.cc-hint{text-align:center;font-size:13px;color:var(--soft);margin-top:14px}
+.cc-hint a{color:var(--acc);text-decoration:underline}
+.cc-lb{position:fixed;inset:0;z-index:100;background:rgba(8,16,11,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;gap:18px;padding:24px}
+.cc-lb[hidden]{display:none}
+.cc-lb img{max-height:88vh;max-width:min(78vw,560px);border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.cc-lb button{border:none;background:rgba(255,255,255,.12);color:#fff;width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer;transition:.15s;flex:0 0 auto}
+.cc-lb button:hover{background:rgba(255,255,255,.26)}
+.cc-lb .cc-lb-x{position:absolute;top:18px;right:18px}
+@media (max-width: 640px){
+  .cc-arrow{display:none}
+  .cc-lb{gap:10px;padding:14px}
+  .cc-lb img{max-width:86vw}
+  .cc-lb .cc-lb-p,.cc-lb .cc-lb-n{position:absolute;bottom:22px}
+  .cc-lb .cc-lb-p{left:calc(50% - 58px)}
+  .cc-lb .cc-lb-n{right:calc(50% - 58px)}
+}

@@ -61,7 +61,7 @@
       <div class="sticker">50% OFF<s>$19.99</s></div>
       <a class="btn-ghost" id="apply-form" href="#features" data-i18n="hero.ctaWhy">기능 둘러보기</a>
     </div>
-    <div class="price-pop"><span class="krw2" data-usd="9.99"></span></div>
+    <div class="price-pop"><span class="krw2" data-usd="9.99">≈ 15,000원</span></div>
 
     <!-- 얼리버드 카운트다운 (초단위) -->
     <div class="countdown" id="countdown" data-deadline="2026-07-31T23:59:59+09:00">
@@ -81,21 +81,21 @@
       <div class="mk-bar"><span></span><span></span><span></span><span class="mk-file">thesis.tex — chuverleaf</span></div>
       <div class="mk-body">
         <div class="mk-editor">
-          <div><i>\section</i>{실시간 미리보기}</div>
-          <div>안녕하세요, <span class="ar">chuverleaf</span>.</div>
-          <div class="hl">저장하면 → 오른쪽에 PDF.</div>
+          <div data-i18n-html="mk.sec"><i>\section</i>{실시간 미리보기}</div>
+          <div data-i18n-html="mk.hello">안녕하세요, <span class="ar">chuverleaf</span>.</div>
+          <div class="hl" data-i18n="mk.save">저장하면 → 오른쪽에 PDF.</div>
           <div><i>\cite</i>{chu2026}</div>
-          <div class="ar">// AI: 문장을 다듬었어요 ✓</div>
+          <div class="ar" data-i18n="mk.ai1">// AI: 문장을 다듬었어요 ✓</div>
         </div>
         <div class="mk-preview">
           <div class="mk-page">
-            <h4 class="mk-sec">1&nbsp;&nbsp;실시간 미리보기</h4>
-            <p class="mk-p">안녕하세요, chuverleaf.</p>
-            <p class="mk-p">저장하면 → 오른쪽에 PDF. [1]</p>
+            <h4 class="mk-sec" data-i18n-html="mk.psec">1&nbsp;&nbsp;실시간 미리보기</h4>
+            <p class="mk-p" data-i18n="mk.phello">안녕하세요, chuverleaf.</p>
+            <p class="mk-p" data-i18n="mk.psave">저장하면 → 오른쪽에 PDF. [1]</p>
           </div>
         </div>
       </div>
-      <div class="mk-ai"><span class="dot">✦</span><span>AI: 서론을 학술체로 다듬었어요 — 저장하면 바로 반영됩니다</span></div>
+      <div class="mk-ai"><span class="dot">✦</span><span data-i18n="mk.aibar">AI: 서론을 학술체로 다듬었어요 — 저장하면 바로 반영됩니다</span></div>
     </div>
     <p class="usercount" id="usercount"></p>
   </div>
@@ -104,10 +104,10 @@
 <!-- 기능 티커 -->
 <div class="ticker" aria-hidden="true">
   <div class="tk">
-    <span>📄 LaTeX 실시간 컴파일</span><span>📝 한글·Word·PPT 미리보기</span><span>📊 엑셀 서식·수식 100% 보존</span><span>🤖 Claude·Codex AI 패널</span><span>🔒 클라우드 업로드 없음</span><span>📚 IEEE·NeurIPS 등 양식 내장</span><span>🎬 Beamer 슬라이드 5종</span>
+    <span data-i18n="mq.1">📄 LaTeX 실시간 컴파일</span><span data-i18n="mq.2">📝 한글·Word·PPT 미리보기</span><span data-i18n="mq.3">📊 엑셀 서식·수식 100% 보존</span><span data-i18n="mq.4">🤖 Claude·Codex AI 패널</span><span data-i18n="mq.5">🔒 클라우드 업로드 없음</span><span data-i18n="mq.6">📚 IEEE·NeurIPS 등 양식 내장</span><span data-i18n="mq.7">🎬 Beamer 슬라이드 5종</span>
   </div>
   <div class="tk">
-    <span>📄 LaTeX 실시간 컴파일</span><span>📝 한글·Word·PPT 미리보기</span><span>📊 엑셀 서식·수식 100% 보존</span><span>🤖 Claude·Codex AI 패널</span><span>🔒 클라우드 업로드 없음</span><span>📚 IEEE·NeurIPS 등 양식 내장</span><span>🎬 Beamer 슬라이드 5종</span>
+    <span data-i18n="mq.1">📄 LaTeX 실시간 컴파일</span><span data-i18n="mq.2">📝 한글·Word·PPT 미리보기</span><span data-i18n="mq.3">📊 엑셀 서식·수식 100% 보존</span><span data-i18n="mq.4">🤖 Claude·Codex AI 패널</span><span data-i18n="mq.5">🔒 클라우드 업로드 없음</span><span data-i18n="mq.6">📚 IEEE·NeurIPS 등 양식 내장</span><span data-i18n="mq.7">🎬 Beamer 슬라이드 5종</span>
   </div>
 </div>
 
@@ -125,6 +125,29 @@
 </div></section>
 
 <!-- 왜 번들(강의)까지 — 다크 섹션 -->
+<!-- 카드로 보는 chuverleaf — 인스타 카드뉴스 캐러셀 (옆으로 스와이프) -->
+<section id="cards"><div class="wrap">
+  <h2 class="sec" data-i18n-html="cards.h">1분 카드로 보는 <span class="grad">chuverleaf</span></h2>
+  <p class="sub" data-i18n="cards.sub">어떤 프로그램인지 카드 10장으로 — 옆으로 넘겨보세요</p>
+  <div class="cc-wrap">
+    <button class="cc-arrow cc-prev" aria-label="이전 카드">‹</button>
+    <div class="cc-track" id="cc-track"></div>
+    <button class="cc-arrow cc-next" aria-label="다음 카드">›</button>
+  </div>
+  <div class="cc-foot">
+    <div class="cc-dots" id="cc-dots"></div>
+    <span class="cc-count" id="cc-count">1 / 10</span>
+  </div>
+  <p class="cc-hint"><span data-i18n="cards.hint">카드를 누르면 크게 볼 수 있어요 · 좌우로 스와이프 · 10장 ·</span>
+    <a href="https://www.instagram.com/chuverleaf/" target="_blank" rel="noopener" data-i18n="cards.ig">인스타에서 보기 📸</a></p>
+  <div class="cc-lb" id="cc-lb" hidden>
+    <button class="cc-lb-x" aria-label="닫기">✕</button>
+    <button class="cc-lb-p" aria-label="이전">‹</button>
+    <img id="cc-lb-img" alt="chuverleaf card">
+    <button class="cc-lb-n" aria-label="다음">›</button>
+  </div>
+</div></section>
+
 <section id="bundle"><div class="wrap why">
   <h2 class="sec" data-i18n-html="bundle.h">프로그램만? <span class="grad">강의까지가 진짜다</span></h2>
   <p class="sub" data-i18n="bundle.sub">도구는 시작일 뿐 — 남들이 모르는 사용법이 격차를 만든다.</p>
@@ -169,7 +192,7 @@
         <span class="was">$19.99</span>
         <span class="off">50% OFF</span>
       </div>
-      <div class="krw" data-usd="9.99"></div>
+      <div class="krw" data-usd="9.99">≈ 15,000원</div>
       <p class="tagline" data-i18n="price.c1.tag">미리보기 도구만 필요하면.</p>
       <ul>
         <li data-i18n="price.c1.l1">전 기능 평생 사용 (1회 결제)</li>
@@ -184,7 +207,7 @@
       <div class="amtrow">
         <span class="amt">$14.99 <small>USD</small></span>
       </div>
-      <div class="krw" data-usd="14.99"></div>
+      <div class="krw" data-usd="14.99">≈ 22,500원</div>
       <p class="tagline" data-i18n="price.c2.tag">사용법 강의만 따로 필요하면.</p>
       <ul>
         <li data-i18n-html="price.c2.l1"><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
@@ -202,7 +225,7 @@
         <span class="was">$34.98</span>
         <span class="off" data-i18n="price.c3.off">한정가</span>
       </div>
-      <div class="krw" data-usd="19.99"></div>
+      <div class="krw" data-usd="19.99">≈ 30,000원</div>
       <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">강의가 사실상 $10</b> — 도구 + 사용법 = 진짜 변화.</p>
       <ul>
         <li data-i18n="price.c3.l1">프로그램 전 기능 + 평생 사용</li>
@@ -275,6 +298,8 @@
 
 <footer><div class="wrap">
   <div class="legal-links">
+    <a href="https://www.instagram.com/chuverleaf/" target="_blank" rel="noopener">📸 @chuverleaf</a>
+    <a href="https://www.instagram.com/chu___chuuuuu" target="_blank" rel="noopener" data-i18n="footer.devig">개발자 인스타 @chu___chuuuuu</a>
     <a href="refund.html" data-i18n="footer.refund">환불정책</a>
     <a href="privacy.html" data-i18n="footer.privacy">개인정보처리방침</a>
     <a href="terms.html" data-i18n="footer.terms">이용약관(EULA)</a>
@@ -291,6 +316,24 @@
 (function(){
   var KEY = "chuverleaf:hp-lang";
   var EN = {
+    "mq.1": "📄 Live LaTeX compile", "mq.2": "📝 HWP·Word·PPT preview",
+    "mq.3": "📊 Excel formats & formulas 100% kept", "mq.4": "🤖 Claude·Codex AI panel",
+    "mq.5": "🔒 No cloud upload", "mq.6": "📚 IEEE·NeurIPS templates built-in",
+    "mq.7": "🎬 5 Beamer slide themes",
+    "mk.sec": '<i>\\section</i>{Live preview}',
+    "mk.hello": 'Hello, <span class="ar">chuverleaf</span>.',
+    "mk.save": "Save → PDF on the right.",
+    "mk.ai1": "// AI: polished the sentence ✓",
+    "mk.psec": "1&nbsp;&nbsp;Live preview",
+    "mk.phello": "Hello, chuverleaf.",
+    "mk.psave": "Save → PDF on the right. [1]",
+    "mk.aibar": "AI: polished the intro to academic tone — applies the moment you save",
+    "uc.count": "👥 {n} people are getting ahead with chuverleaf",
+    "rev.loadFail": "Couldn't load reviews — please try again in a moment.",
+    "cards.h": 'chuverleaf in <span class="grad">10 cards</span>',
+    "cards.sub": "What it does, in a 1-minute swipe — flip through →",
+    "cards.hint": "Tap a card to enlarge · swipe sideways · 10 cards ·", "cards.ig": "See it on Instagram 📸",
+    "footer.devig": "Developer @chu___chuuuuu",
     "_title": "chuverleaf — Can document work really be this fast? Local LaTeX·Word·Hangul·PPT·Excel live preview + AI",
     "nav.features":"Features", "nav.bundle":"Course", "nav.reviews":"Reviews", "faq":"FAQ", "nav.buy":"$9.99 early-bird 🍃",
     "hero.wedge":"⚡ Save → preview in 0.5s",
@@ -436,7 +479,7 @@
       var show=function(n){
         if(n>0){
           var tmpl = (window.__hpT ? window.__hpT("👥 {n}명이 chuverleaf와 함께 앞서나가는 중", "uc.count") : "👥 {n}명이 chuverleaf와 함께 앞서나가는 중");
-          uc.textContent = tmpl.replace("{n}", n.toLocaleString());
+          uc.dataset.lastN = n; uc.textContent = tmpl.replace("{n}", n.toLocaleString());
         }
         else { uc.style.display="none"; }
       };
@@ -448,6 +491,11 @@
           show(n||fallback);
         }).catch(function(){ show(fallback); });
       } else { show(fallback); }
+      // 언어 전환 시 현재 인원수로 문구 재생성 (EN ↔ KO)
+      var langSel = document.getElementById("lang-select-hp");
+      if (langSel) langSel.addEventListener("change", function(){
+        var n = parseInt(uc.dataset.lastN || "0", 10); if (n > 0) show(n);
+      });
     }
   })();
 </script>
@@ -471,6 +519,83 @@
       sE.textContent=pad(Math.floor(diff%60000/1000));
     }
     tick(); setInterval(tick,1000);
+  })();
+</script>
+
+<script>
+  // ===== 카드뉴스 캐러셀 — 중앙 스포트라이트 · 자동 넘김 · 점 내비 · 라이트박스 =====
+  (function(){
+    var track = document.getElementById('cc-track'); if(!track) return;
+    var dots = document.getElementById('cc-dots'), count = document.getElementById('cc-count');
+    var lb = document.getElementById('cc-lb'), lbImg = document.getElementById('cc-lb-img');
+    var N = 10, cur = 0, timer = null, userTouched = false;
+    function lang(){ var s=document.getElementById('lang-select-hp'); return (s && s.value==='en') ? 'en' : 'ko'; }
+    function src(i){ var n=((i+1)<10?'0':'')+(i+1); return 'cards/'+lang()+'-'+n+'.webp'; }
+    function cards(){ return track.querySelectorAll('.cc-card'); }
+    function build(){
+      var h='', i;
+      for (i=0;i<N;i++){ h += '<img class="cc-card" loading="lazy" decoding="async" data-i="'+i+'" src="'+src(i)+'" alt="chuverleaf card '+(i+1)+'">'; }
+      track.innerHTML = h;
+      if(dots){ h=''; for(i=0;i<N;i++){ h+='<button class="cc-dot" type="button" data-i="'+i+'" aria-label="카드 '+(i+1)+'"></button>'; } dots.innerHTML=h; }
+      go(0,true); paint();
+    }
+    function nearest(){
+      var cs=cards(), mid=track.scrollLeft+track.clientWidth/2, best=0, bd=1e9;
+      for(var i=0;i<cs.length;i++){ var m=cs[i].offsetLeft+cs[i].offsetWidth/2, d=Math.abs(m-mid); if(d<bd){bd=d;best=i;} }
+      return best;
+    }
+    function paint(){
+      cur = nearest();
+      var cs=cards(), i;
+      for(i=0;i<cs.length;i++){ cs[i].classList.toggle('is-side', i!==cur); }
+      if(dots){ var ds=dots.children; for(i=0;i<ds.length;i++){ ds[i].classList.toggle('on', i===cur); } }
+      if(count){ count.textContent = (cur+1)+' / '+N; }
+    }
+    function go(i,inst){
+      i=(i+N)%N; var c=cards()[i]; if(!c) return;
+      var x=c.offsetLeft + c.offsetWidth/2 - track.clientWidth/2;
+      if(inst){ track.scrollLeft=x; } else { track.scrollTo({left:x, behavior:'smooth'}); }
+    }
+    var raf=null;
+    track.addEventListener('scroll', function(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=null; paint(); }); }, {passive:true});
+    // 자동 넘김 — 사용자가 만지면 멈추고 다시 켜지 않음
+    function play(){ if(userTouched || timer) return; timer=setInterval(function(){ go(cur+1); }, 3500); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function hands(){ userTouched=true; stop(); }
+    ['pointerdown','wheel','touchstart'].forEach(function(ev){ track.addEventListener(ev, hands, {passive:true}); });
+    track.addEventListener('mouseenter', stop);
+    track.addEventListener('mouseleave', function(){ play(); });
+    document.addEventListener('visibilitychange', function(){ if(document.hidden){ stop(); } else { play(); } });
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ play(); } else { stop(); } }); },{threshold:.25});
+      io.observe(track);
+    } else { play(); }
+    // 화살표 · 점
+    var pv=document.querySelector('.cc-prev'), nx=document.querySelector('.cc-next');
+    if(pv) pv.addEventListener('click', function(){ hands(); go(cur-1); });
+    if(nx) nx.addEventListener('click', function(){ hands(); go(cur+1); });
+    if(dots) dots.addEventListener('click', function(e){ var b=e.target.closest ? e.target.closest('[data-i]') : null; if(!b) return; hands(); go(parseInt(b.getAttribute('data-i'),10)); });
+    // 라이트박스 — 카드 클릭 → 크게 보기
+    function lbShow(i){ if(!lb) return; cur=(i+N)%N; lbImg.src=src(cur); lb.hidden=false; document.body.style.overflow='hidden'; }
+    function lbHide(){ if(!lb) return; lb.hidden=true; document.body.style.overflow=''; go(cur,true); paint(); }
+    track.addEventListener('click', function(e){ var c=e.target.closest ? e.target.closest('.cc-card') : null; if(!c) return; hands(); lbShow(parseInt(c.getAttribute('data-i'),10)); });
+    if(lb){
+      lb.addEventListener('click', function(e){
+        var t=e.target;
+        if(t.closest('.cc-lb-p')){ lbShow(cur-1); return; }
+        if(t.closest('.cc-lb-n')){ lbShow(cur+1); return; }
+        if(t===lb || t.closest('.cc-lb-x')){ lbHide(); }
+      });
+      document.addEventListener('keydown', function(e){
+        if(lb.hidden) return;
+        if(e.key==='Escape'){ lbHide(); }
+        else if(e.key==='ArrowLeft'){ lbShow(cur-1); }
+        else if(e.key==='ArrowRight'){ lbShow(cur+1); }
+      });
+    }
+    var sel=document.getElementById('lang-select-hp');
+    if(sel) sel.addEventListener('change', function(){ var k=cur; build(); go(k,true); if(lb && !lb.hidden){ lbImg.src=src(k); } });
+    build();
   })();
 </script>
 
