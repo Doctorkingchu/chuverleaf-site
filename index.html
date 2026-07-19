@@ -292,6 +292,10 @@
     </div>
   </form>
   <iframe name="rv-sink" id="rv-sink" class="rv-sink" title="review-sink"></iframe>
+  <div class="rev-cta">
+    <span data-i18n="rev.ctaT">후기 속 그 경험, 얼리버드 가격일 때 직접 확인해보세요</span>
+    <a class="btn-buy" href="#pricing" data-i18n="rev.ctaB">🍃 얼리버드로 시작하기</a>
+  </div>
 </div></section>
 
 <section id="faq"><div class="wrap">
@@ -411,6 +415,7 @@
     "rev.msg":"Email is only to verify real reviews · never shown", "rev.submit":"Submit",
     "rev.boardOpen":"📋 See all reviews", "rev.boardClose":"Hide all reviews ▴",
     "rev.countN":"{n} reviews", "rev.outOf":"out of 5", "rev.loadFail":"Couldn't load reviews. Please try again shortly.",
+    "rev.verShort":"✓ verified user", "rev.ctaT":"What the reviews describe — see for yourself at the early-bird price", "rev.ctaB":"🍃 Start with the early-bird",
     "price.h":"Pricing",
     "price.sub":"Early-bird only · <b>ends July 31</b> — then we <b>switch to subscription</b>. It will never be cheaper.",
     "price.c1.badge":"Tool only", "price.c1.h":"chuverleaf program", "price.c1.tag":"If you just need the preview tool.",
@@ -736,10 +741,31 @@
       var sum=0,cnt=0; arr.forEach(function(x){ if(!isNaN(x.star)){ sum+=x.star; cnt++; } });
       var avg = cnt ? (sum/cnt) : 0;
       arr.reverse();                       // 시트 누적순 → 최신 먼저
-      list.innerHTML="";   // 로딩 메시지 제거 — 대표 카드 없이 제목 게시판만 사용
+      var hpt=function(ko,k){ return window.__hpT ? window.__hpT(ko,k) : ko; };
+
+      // 베스트 후기 3장 — 별점 높고 내용이 알찬 후기를 골라 카드로 표시
+      var feats=arr.slice().sort(function(a,b){
+        var s=(isNaN(b.star)?0:b.star)-(isNaN(a.star)?0:a.star);
+        return s!==0 ? s : ((b.body||"").length-(a.body||"").length);
+      }).slice(0,3);
+      var fh="";
+      if(feats.length){
+        fh='<div class="rv-feat">';
+        feats.forEach(function(x){
+          fh+='<figure class="rf-card">'
+            +'<div class="rf-stars">'+stars(x.star)+'</div>'
+            +(x.title?'<div class="rf-title">'+esc(x.title)+'</div>':'')
+            +'<blockquote class="rf-quote">'+esc(x.body)+'</blockquote>'
+            +'<figcaption class="rf-who"><span class="rf-av">'+esc((x.nick||"익").charAt(0).toUpperCase())+'</span>'
+            +'<span class="rf-nick">'+esc(x.nick)+'</span>'
+            +'<span class="rf-ver">'+hpt("✓ 실사용자","rev.verShort")+'</span></figcaption>'
+            +'</figure>';
+        });
+        fh+='</div>';
+      }
+      list.innerHTML=fh;   // 로딩 메시지 제거 + 베스트 후기 카드
 
       // 평균 별점 요약 (눈에 띄게)
-      var hpt=function(ko,k){ return window.__hpT ? window.__hpT(ko,k) : ko; };
       var sumEl=document.getElementById("rev-summary");
       if(sumEl && cnt){
         var meta=hpt("{n}개 후기","rev.countN").replace("{n}", arr.length)+' · '+hpt("5점 만점","rev.outOf");
@@ -754,9 +780,12 @@
         var PAGE=5, pg=0, npg=Math.ceil(arr.length/PAGE);
         var rowHtml=function(x){
           var d=esc((x.date||"").toString().trim()); if(d.length>12){ d=d.slice(0,10); }
-          var meta='<span class="rb-mstars">'+stars(x.star)+'</span> · '+esc(x.nick)+(d?' · '+d:'');
-          return '<div class="rb-item"><button class="rb-head" type="button"><span class="rb-title">'+esc(x.title)+'</span><span class="rb-caret">▾</span></button>'
-            +'<div class="rb-body" hidden><div class="rb-meta">'+meta+'</div>'+esc(x.body)+'</div></div>';
+          return '<div class="rb-item"><button class="rb-head" type="button">'
+            +'<span class="rb-av">'+esc((x.nick||"익").charAt(0).toUpperCase())+'</span>'
+            +'<span class="rb-hmain"><span class="rb-title">'+esc(x.title)+'</span>'
+            +'<span class="rb-sub"><span class="rb-mstars">'+stars(x.star)+'</span> · '+esc(x.nick)+(d?' · '+d:'')+'</span></span>'
+            +'<span class="rb-caret">▾</span></button>'
+            +'<div class="rb-body" hidden>'+esc(x.body)+'</div></div>';
         };
         var renderBoard=function(){
           board.innerHTML = arr.slice(pg*PAGE, pg*PAGE+PAGE).map(rowHtml).join("");
