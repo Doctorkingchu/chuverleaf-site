@@ -3,7 +3,7 @@
   chuverleaf 판매(랜딩) 페이지  ·  2026-07 리디자인 (Fresh Energy)
   ※ 결제: 카드=Polar 체크아웃(CHUVERLEAF_CONFIG.polar, 상품별) · 계좌이체=구글폼(formUrl, 국내 전용·영어모드 숨김).
   ※ 얼리버드 마감: 2026-07-31 23:59 (KST) — 카운트다운은 #countdown data-deadline 로 관리.
-  ※ 가격: 정가 $19.99 → 얼리버드 $9.99 (50% OFF) · 마감 후 구독제 전환 예정.
+  ※ 가격(KO): 정가 ₩29,900 → 얼리버드 ₩14,900 (50% OFF) · EN 페이지는 USD($9.99) 유지 · 마감 후 구독제 전환 예정.
   ※ 정적 파일 — 폴더째 Netlify/GitHub Pages/Vercel 에 배포.
 -->
 <html lang="ko">
@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>chuverleaf — 문서 작업이 이렇게 빨라도 돼? 로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + AI</title>
-<meta name="description" content="한글(HWP)·Word·PPT·Excel·LaTeX 실시간 미리보기 + AI 패널, 전부 내 PC에서. 엑셀은 값만 고쳐도 서식·수식 보존. 얼리버드 $9.99 (정가 $19.99, 50% OFF).">
+<meta name="description" content="한글(HWP)·Word·PPT·Excel·LaTeX 실시간 미리보기 + AI 패널, 전부 내 PC에서. 엑셀은 값만 고쳐도 서식·수식 보존. 얼리버드 ₩14,900 (정가 ₩29,900, 50% OFF).">
 <link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="canonical" href="https://chuverleaf.netlify.app/">
@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="chuverleaf">
 <meta property="og:title" content="문서 작업이 이렇게 빨라도 돼? — chuverleaf, 로컬 LaTeX·Word·한글·PPT·Excel + AI">
-<meta property="og:description" content="내 PC에서 한글·Word·PPT·엑셀·LaTeX 실시간 미리보기 + Claude·Codex AI 사용법까지. 얼리버드 $9.99 (정가 $19.99, 50% OFF).">
+<meta property="og:description" content="내 PC에서 한글·Word·PPT·엑셀·LaTeX 실시간 미리보기 + Claude·Codex AI 사용법까지. 얼리버드 ₩14,900 (정가 ₩29,900, 50% OFF).">
 <meta property="og:url" content="https://chuverleaf.netlify.app/">
 <meta property="og:image" content="https://chuverleaf.netlify.app/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="문서 작업이 이렇게 빨라도 돼? — chuverleaf">
-<meta name="twitter:description" content="로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + Claude·Codex AI 사용법. 얼리버드 $9.99 (50% OFF).">
+<meta name="twitter:description" content="로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + Claude·Codex AI 사용법. 얼리버드 ₩14,900 (50% OFF).">
 <meta name="twitter:image" content="https://chuverleaf.netlify.app/og-image.png">
 
 <link rel="stylesheet" href="style.css">
@@ -42,7 +42,7 @@
     <a href="#bundle" data-i18n="nav.bundle">강의</a>
     <a href="#reviews" data-i18n="nav.reviews">후기</a>
     <a href="#faq" data-i18n="faq">FAQ</a>
-    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">$9.99 얼리버드 🍃</a>
+    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">₩14,900 얼리버드 🍃</a>
     <select id="lang-select-hp" aria-label="Language" class="lang-sel">
       <option value="ko">🌐 한국어</option>
       <option value="en">🌐 English</option>
@@ -57,11 +57,11 @@
     <p class="lede" data-i18n="hero.lede">한글·Word·LaTeX·엑셀 + AI를 한 화면에. 내 PC에서 바로 고치고, 저장하면 바로 보인다.</p>
 
     <div class="cta">
-      <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">지금 $9.99에 시작 →</a>
-      <div class="sticker">50% OFF<s>$19.99</s></div>
+      <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">지금 ₩14,900에 시작 →</a>
+      <div class="sticker" data-i18n-html="hero.sticker">50% OFF<s>₩29,900</s></div>
       <a class="btn-ghost" id="apply-form" href="#features" data-i18n="hero.ctaWhy">기능 둘러보기</a>
     </div>
-    <div class="price-pop"><span class="krw2" data-usd="9.99">≈ 15,000원</span></div>
+    
 
     <!-- 얼리버드 카운트다운 (초단위) -->
     <div class="countdown" id="countdown" data-deadline="2026-07-31T23:59:59+09:00">
@@ -182,17 +182,18 @@
 <section id="pricing"><div class="wrap">
   <h2 class="sec" data-i18n="price.h">가격</h2>
   <p class="sub" data-i18n-html="price.sub">얼리버드 한정 · <b>7월 31일 마감</b> — 마감 후 <b>구독제로 전환</b>됩니다. 지금이 가장 쌉니다.</p>
+  <div class="pr-urgent"><span class="pu-dot"></span><span data-i18n="price.tleft">얼리버드 종료까지</span> <b id="cd2">--·--:--:--</b></div>
   <div class="prices">
 
     <div class="price">
       <span class="badge plain" data-i18n="price.c1.badge">도구만</span>
       <h3 data-i18n="price.c1.h">chuverleaf 프로그램</h3>
       <div class="amtrow">
-        <span class="amt">$9.99 <small>USD</small></span>
-        <span class="was">$19.99</span>
+        <span class="amt" data-i18n-html="price.c1.amt">₩14,900</span>
+        <span class="was" data-i18n="price.c1.was">₩29,900</span>
         <span class="off">50% OFF</span>
       </div>
-      <div class="krw" data-usd="9.99">≈ 15,000원</div>
+      
       <p class="tagline" data-i18n="price.c1.tag">미리보기 도구만 필요하면.</p>
       <ul>
         <li data-i18n="price.c1.l1">전 기능 평생 사용 (1회 결제)</li>
@@ -210,9 +211,9 @@
       <span class="badge plain" data-i18n="price.c2.badge">강의만</span>
       <h3 data-i18n="price.c2.h">AI·chuverleaf 강의 5강</h3>
       <div class="amtrow">
-        <span class="amt">$14.99 <small>USD</small></span>
+        <span class="amt" data-i18n-html="price.c2.amt">₩22,900</span>
       </div>
-      <div class="krw" data-usd="14.99">≈ 22,500원</div>
+      
       <p class="tagline" data-i18n="price.c2.tag">사용법 강의만 따로 필요하면.</p>
       <ul>
         <li data-i18n-html="price.c2.l1"><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
@@ -231,12 +232,12 @@
       <span class="badge" data-i18n="price.c3.badge">BEST · 강의 5강 포함</span>
       <h3 data-i18n="price.c3.h">프로그램 + 강의 5강</h3>
       <div class="amtrow">
-        <span class="amt">$19.99 <small>USD</small></span>
-        <span class="was">$34.98</span>
+        <span class="amt" data-i18n-html="price.c3.amt">₩29,900</span>
+        <span class="was" data-i18n="price.c3.was">₩49,900</span>
         <span class="off" data-i18n="price.c3.off">한정가</span>
       </div>
-      <div class="krw" data-usd="19.99">≈ 30,000원</div>
-      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">강의가 사실상 $10</b> — 도구 + 사용법 = 진짜 변화.</p>
+      
+      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">강의가 사실상 ₩15,000</b> — 도구 + 사용법 = 진짜 변화.</p>
       <ul>
         <li data-i18n="price.c3.l1">프로그램 전 기능 + 평생 사용</li>
         <li data-i18n-html="price.c3.l2"><b>1강</b> AI CLI(Claude·Codex) — 남들이 모르는 사용법</li>
@@ -306,7 +307,7 @@
     <details><summary data-i18n="faq.q3">구독인가요?</summary>
       <p data-i18n="faq.a3">얼리버드 기간에는 1회 결제 후 평생 사용입니다. 얼리버드 마감 후에는 구독제로 전환될 예정이지만, 얼리버드 구매자는 영향 없이 평생 사용하며 업데이트로 추가되는 강의까지 평생 무료입니다.</p></details>
     <details><summary data-i18n="faq.q4">결제·환불은요?</summary>
-      <p data-i18n-html="faq.a4">가격은 USD 기준이며 결제 시 환율에 따라 원화로 청구됩니다. 환불은
+      <p data-i18n-html="faq.a4">한국은 원화 정찰 가격(₩14,900~)으로 결제됩니다 (해외는 USD). 환불은
          <a href="refund.html">환불정책</a>을 참고하세요.</p></details>
   </div>
 </div></section>
@@ -326,12 +327,24 @@
   <div class="copyr">© 2026 Yeonouk Chu. chuverleaf. All rights reserved.</div>
 </div></footer>
 
+<!-- 모바일 하단 고정 결제 바 (스크롤 시 표시 · 가격/푸터 화면에선 숨김) -->
+<div class="m-bar" id="m-bar">
+  <div class="m-bar-info"><span data-i18n-html="mbar.price"><b>₩29,900</b> <s>₩49,900</s></span><br><span data-i18n="mbar.t">번들 · 얼리버드 한정가</span></div>
+  <a class="m-bar-btn" id="m-buy" href="#pricing" data-i18n="mbar.buy">바로 결제 →</a>
+</div>
+
 <!-- ===== 홈페이지 언어 전환 (한국어 / English) — data-i18n* + 영어 맵 ===== -->
 <script>
 (function(){
   var KEY = "chuverleaf:hp-lang";
   var EN = {
+    "hero.sticker": '50% OFF<s>$19.99</s>',
+    "price.c1.amt": '$9.99 <small>USD</small>', "price.c1.was": "$19.99",
+    "price.c2.amt": '$14.99 <small>USD</small>',
+    "price.c3.amt": '$19.99 <small>USD</small>', "price.c3.was": "$34.98",
+    "mbar.price": '<b>$19.99</b> <s>$34.98</s>',
     "pay.card": "💳 Pay by card", "pay.bank": "🏦 Bank transfer (KRW, Korea only)",
+    "price.tleft": "⚡ Early-bird ends in", "mbar.t": "bundle · early-bird price", "mbar.buy": "Buy now →",
     "mq.1": "📄 Live LaTeX compile", "mq.2": "📝 HWP·Word·PPT preview",
     "mq.3": "📊 Excel formats & formulas 100% kept", "mq.4": "🤖 Claude·Codex AI panel",
     "mq.5": "🔒 No cloud upload", "mq.6": "📚 IEEE·NeurIPS templates built-in",
@@ -425,7 +438,7 @@
     "faq.q3":"Is it a subscription?",
     "faq.a3":"During the early-bird period it's pay once, use forever. After the deadline chuverleaf moves to a subscription — but early-bird buyers are unaffected: lifetime use, and lessons added in updates stay free for life.",
     "faq.q4":"Payment & refunds?",
-    "faq.a4":"Prices are in USD and billed in KRW at the current exchange rate. For refunds, see our <a href=\"refund.html\">refund policy</a>.",
+    "faq.a4":"Prices are in USD for international customers (Korean customers see fixed KRW pricing). For refunds, see our <a href=\"refund.html\">refund policy</a>.",
     "footer.refund":"Refund policy", "footer.privacy":"Privacy policy", "footer.terms":"Terms (EULA)", "footer.contact":"Contact"
   };
   var nodes = document.querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-ph],[data-i18n-title]");
@@ -498,7 +511,8 @@
       if (C.polar) set("pay-card-"+k, C.polar[k]);
       set("pay-bank-"+k, C.formUrl);
     });
-    set("buy-all", C.polar ? C.polar.bundle : C.formUrl);  // 통합 버튼 → 번들 카드결제
+    set("buy-all", C.polar ? C.polar.bundle : C.formUrl);
+    set("m-buy", C.polar ? C.polar.bundle : C.formUrl);   // 모바일 하단 바 → 번들 카드결제  // 통합 버튼 → 번들 카드결제
     // 영어 모드: 계좌이체(국내 전용) 버튼 숨김
     var langSelPay = document.getElementById("lang-select-hp");
     var markEn = function(){ document.body.classList.toggle("en-mode", !!(langSelPay && langSelPay.value === "en")); };
@@ -547,6 +561,8 @@
       hE.textContent=pad(Math.floor(diff%86400000/3600000));
       mE.textContent=pad(Math.floor(diff%3600000/60000));
       sE.textContent=pad(Math.floor(diff%60000/1000));
+      var c2=document.getElementById('cd2');
+      if(c2){ c2.textContent=Math.floor(diff/86400000)+'d '+pad(Math.floor(diff%86400000/3600000))+':'+pad(Math.floor(diff%3600000/60000))+':'+pad(Math.floor(diff%60000/1000)); }
     }
     tick(); setInterval(tick,1000);
   })();
@@ -657,6 +673,29 @@
     var t=function(){ if(window.scrollY>420){ b.classList.add("show"); } else { b.classList.remove("show"); } };
     window.addEventListener("scroll", t, {passive:true}); t();
     b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+  })();
+
+  // ===== 모바일 하단 결제 바 — 스크롤하면 표시, 가격·푸터가 보이면 숨김 =====
+  (function(){
+    var bar=document.getElementById("m-bar"); if(!bar) return;
+    var pr=document.getElementById("pricing"), ft=document.querySelector("footer");
+    var prIn=false, ftIn=false;
+    function upd(){
+      var on = window.scrollY>650 && !prIn && !ftIn;
+      bar.classList.toggle("show", on);
+      document.body.classList.toggle("mbar-on", on);
+    }
+    if("IntersectionObserver" in window){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(en){
+          if(en.target===pr){ prIn=en.isIntersecting; }
+          if(en.target===ft){ ftIn=en.isIntersecting; }
+        });
+        upd();
+      },{threshold:.06});
+      if(pr){ io.observe(pr); } if(ft){ io.observe(ft); }
+    }
+    window.addEventListener("scroll", upd, {passive:true}); upd();
   })();
 
   // ===== 후기: 후기 작성 폼 연결 + '공개후기' 시트 CSV 렌더 (닉네임만, 이메일 비공개) =====
