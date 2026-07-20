@@ -378,3 +378,64 @@ body.mbar-on #to-top{bottom:92px}
 .rev-cta{display:flex;flex-direction:column;align-items:center;gap:14px;margin:32px auto 0;text-align:center}
 .rev-cta span{color:var(--mut);font-size:15px;font-weight:600}
 .rev-cta .btn-buy{background:var(--grad);box-shadow:0 12px 30px rgba(62,160,200,.38)}
+
+
+/* ══ 기능 카드 클릭 → 상세 팝업 (2026-07) ══ */
+#features .sub{margin-bottom:34px}
+.feat-card{-webkit-appearance:none;appearance:none;font:inherit;text-align:left;width:100%;
+  cursor:pointer;color:var(--ink);background:var(--panel);display:flex;flex-direction:column}
+.feat-card p{flex:1 1 auto}
+.feat-card:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.feat-more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;
+  font-weight:800;color:var(--acc);letter-spacing:-.1px;transition:gap .15s ease,color .15s ease}
+.feat-more::after{content:"→";display:inline-block;transition:transform .18s ease}
+.feat-card:hover .feat-more{color:#0f7d54}
+.feat-card:hover .feat-more::after{transform:translateX(5px)}
+
+/* 팝업 */
+.feat-modal{position:fixed;inset:0;z-index:100;display:flex;padding:24px;overflow-y:auto;
+  background:rgba(8,16,11,.9);backdrop-filter:blur(8px);opacity:0;transition:opacity .2s ease}
+.feat-modal[hidden]{display:none}
+.feat-modal.show{opacity:1}
+.feat-modal-box{position:relative;margin:auto;width:100%;max-width:760px;background:var(--panel);
+  border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5);
+  transform:translateY(14px) scale(.985);transition:transform .24s cubic-bezier(.2,.8,.2,1)}
+.feat-modal.show .feat-modal-box{transform:none}
+.feat-modal-x{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;border:none;
+  border-radius:50%;background:rgba(12,24,16,.55);color:#fff;font-size:16px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:.18s}
+.feat-modal-x:hover{background:rgba(12,24,16,.85);transform:rotate(90deg)}
+
+/* 밝은 브라우저 창 프레임 */
+.feat-shot{background:linear-gradient(180deg,#f4f8f5,#e8f0eb)}
+.feat-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line)}
+.feat-bar span{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+.feat-bar span:nth-child(1){background:#ff5f57}
+.feat-bar span:nth-child(2){background:#febc2e}
+.feat-bar span:nth-child(3){background:#28c840}
+.feat-url{margin-left:10px;font-size:12px;color:var(--soft);font-family:Consolas,Menlo,monospace;
+  background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:3px 12px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.feat-shot-img{padding:16px 16px 18px}
+.feat-shot-img img{display:block;width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;
+  border-radius:10px;border:1px solid rgba(12,24,16,.1);box-shadow:0 12px 30px rgba(12,24,16,.2)}
+
+/* 팝업 본문 */
+.feat-modal-body{padding:24px 30px 30px}
+.feat-modal-body h3{margin:0 0 12px;font-size:23px;letter-spacing:-.4px;line-height:1.25}
+.feat-modal-body p{margin:0;color:var(--mut);font-size:15px;line-height:1.78;text-wrap:pretty}
+.feat-modal-body p b{color:var(--ink);font-weight:700}
+
+@media(max-width:760px){ #features .features{grid-template-columns:repeat(2,1fr);gap:12px} }
+@media(max-width:640px){
+  .feat-card{padding:17px 15px}
+  .feat-card h3{font-size:15px}
+  .feat-card p{font-size:13px}
+  .feat-more{margin-top:12px}
+  .feat-modal{padding:12px}
+  .feat-shot-img{padding:12px}
+  .feat-modal-body{padding:20px 20px 24px}
+  .feat-modal-body h3{font-size:20px}
+  .feat-modal-body p{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){ .feat-modal,.feat-modal-box,.feat-more::after,.feat-modal-x{transition:none} }
