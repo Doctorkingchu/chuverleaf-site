@@ -1,5 +1,7 @@
 {
-  "latest": "1.4.0",
-  "url": "https://chuverleaf.netlify.app/",
-  "notes": "워드·한글 대폭 강화 — 표/그림/수식 오른쪽 클릭 편집, 글꼴 39종, 오른쪽 미리보기가 실제 Word처럼 페이지로 나뉘어 보임, 편집기↔미리보기 양방향 위치 이동(더블클릭·Find in PDF), 라이트/다크 테마 & 새 디자인. 사용설명서.pdf도 갱신."
+  "latest": "1.4.1",
+  "url": "https://drive.google.com/uc?export=download&id=1IcfuXnBPquIqj71vIEwN7kMZDv3dub9p",
+  "download_win": "https://drive.google.com/uc?export=download&id=1IcfuXnBPquIqj71vIEwN7kMZDv3dub9p",
+  "download_mac": "",
+  "notes": "원클릭 자동 업데이트 도입 — 배너 [지금 업데이트] 한 번이면 새 버전으로 교체·재실행(Windows). 이후 버전부터는 클릭 한 번으로 업데이트됩니다."
 }
