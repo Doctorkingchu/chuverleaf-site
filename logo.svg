@@ -9,7 +9,9 @@
     <path d="M160,77 Q250,160 160,243 Q70,160 160,77 Z" fill="url(#g)"></path>
     <line x1="160" y1="96" x2="160" y2="224" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" opacity="0.94"></line>
   </g>
-  <text x="332" y="214" font-family="&#39;Times New Roman&#39;, Times, serif" font-weight="bold" font-size="190">
-    <tspan fill="#0c1810">chuver</tspan><tspan fill="#14a06b">leaf</tspan>
+  <!-- textLength 고정: Times New Roman이 없는 기기(안드로이드 등)에서 대체 폰트가
+       더 넓게 그려져 viewBox를 넘어가 'f'가 잘리던 문제 방지. 값은 Windows 렌더 실측치. -->
+  <text y="214" font-family="&#39;Times New Roman&#39;, Times, serif" font-weight="bold" font-size="190">
+    <tspan x="332" fill="#0c1810" textLength="559.3" lengthAdjust="spacingAndGlyphs">chuver</tspan><tspan x="891.3" fill="#14a06b" textLength="295.4" lengthAdjust="spacingAndGlyphs">leaf</tspan>
   </text>
 </svg>
