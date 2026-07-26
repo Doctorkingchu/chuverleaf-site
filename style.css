@@ -217,12 +217,12 @@ footer .copyr{margin-top:10px}
   .mockup{transform:none}
 }
 @media(max-width:720px){ .why-grid{grid-template-columns:1fr} }
-/* 모바일 헤더: 섹션 텍스트 링크 숨기고 CTA+언어만 → 가로 오버플로우 제거 */
+/* 모바일 헤더: 섹션 링크·결제버튼 모두 숨기고 로고+언어만 → 겹침/잘림 제거
+   (결제는 히어로 CTA + 하단 m-bar가 대신하므로 헤더는 깔끔하게) */
 @media(max-width:760px){
-  nav a:not(.nav-cta){display:none}
+  nav a{display:none}
   header .wrap{padding:0 16px}
-  nav a.nav-cta{margin-left:0;padding:8px 15px;font-size:13.5px}
-  .lang-sel{margin-left:10px;padding:6px 8px;font-size:12.5px}
+  .lang-sel{margin-left:0;padding:6px 10px;font-size:13px}
   .wrap{padding:0 18px}
 }
 @media(max-width:640px){
