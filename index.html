@@ -2,7 +2,7 @@
 <!--
   chuverleaf 판매(랜딩) 페이지  ·  2026-07 리디자인 (Fresh Energy)
   ※ 결제: 카드=Polar 체크아웃(CHUVERLEAF_CONFIG.polar, 상품별) · 계좌이체=구글폼(formUrl, 국내 전용·영어모드 숨김).
-  ※ 얼리버드 마감: 2026-11-30 23:59 (KST) — 카운트다운은 #countdown data-deadline 로 관리.
+  ※ 얼리버드 마감: 2026-10-31 23:59 (KST) — 카운트다운은 #countdown data-deadline 로 관리.
   ※ 가격(KO): 정가 ₩29,900 → 얼리버드 ₩14,900 (50% OFF) · EN 페이지는 USD($9.99) 유지 · 마감 후 구독제 전환 예정.
   ※ 정적 파일 — 폴더째 Netlify/GitHub Pages/Vercel 에 배포.
 -->
@@ -64,14 +64,14 @@
     
 
     <!-- 얼리버드 카운트다운 (초단위) -->
-    <div class="countdown" id="countdown" data-deadline="2026-11-30T23:59:59+09:00">
+    <div class="countdown" id="countdown" data-deadline="2026-10-31T23:59:59+09:00">
       <span class="cd-title" data-i18n="cd.title">얼리버드 마감</span>
       <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-lab" data-i18n="cd.d">일</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-lab" data-i18n="cd.h">시간</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-lab" data-i18n="cd.m">분</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-lab" data-i18n="cd.s">초</span></div>
     </div>
-    <p class="cd-note" data-i18n-html="hero.cdNote">⏳ 마감 <b>11월 30일 23:59 (KST)</b> · 이후 <b>구독제 전환</b> — 지금 사면 1회 결제로 평생 소장</p>
+    <p class="cd-note" data-i18n-html="hero.cdNote">⏳ 마감 <b>10월 31일 23:59 (KST)</b> · 이후 <b>구독제 전환</b> — 지금 사면 1회 결제로 평생 소장</p>
     <div class="trust" data-i18n="hero.trust">✓ 로컬 전용 · ✓ 한글·Word·PPT·Excel·LaTeX · ✓ AI 패널 · ✓ 1회 결제 평생 사용</div>
   </div>
 
@@ -207,7 +207,7 @@
 
 <section id="pricing"><div class="wrap">
   <h2 class="sec" data-i18n="price.h">가격</h2>
-  <p class="sub" data-i18n-html="price.sub">얼리버드 한정 · <b>11월 30일 마감</b> — 마감 후 <b>구독제로 전환</b>됩니다. 지금이 가장 쌉니다.</p>
+  <p class="sub" data-i18n-html="price.sub">얼리버드 한정 · <b>10월 31일 마감</b> — 마감 후 <b>구독제로 전환</b>됩니다. 지금이 가장 쌉니다.</p>
   <div class="pr-urgent"><span class="pu-dot"></span><span data-i18n="price.tleft">얼리버드 종료까지</span> <b id="cd2">--·--:--:--</b></div>
   <div class="prices">
 
@@ -399,7 +399,7 @@
     "hero.h1":"Can document work<br>really be <span class=\"grad\">this fast?</span>",
     "hero.lede":"Hangul, Word, LaTeX, Excel + AI on one screen. Fix it right on your PC — save, and see it instantly.",
     "cd.title":"Early-bird ends in", "cd.d":"days", "cd.h":"hrs", "cd.m":"min", "cd.s":"sec",
-    "hero.cdNote":"⏳ Ends <b>November 30, 23:59 (KST)</b> · then we switch to <b>subscription</b> — buy now, pay once, keep it for life",
+    "hero.cdNote":"⏳ Ends <b>October 31, 23:59 (KST)</b> · then we switch to <b>subscription</b> — buy now, pay once, keep it for life",
     "hero.ctaBuy":"Start now for $9.99 →", "hero.ctaWhy":"Explore features",
     "hero.trust":"✓ Local-only · ✓ Hangul·Word·PPT·Excel·LaTeX · ✓ AI panel · ✓ Pay once, use forever",
     "feat.latex.h":"📄 Live LaTeX",
@@ -452,7 +452,7 @@
     "rev.countN":"{n} reviews", "rev.outOf":"out of 5", "rev.loadFail":"Couldn't load reviews. Please try again shortly.",
     "rev.verShort":"✓ verified user", "rev.ctaT":"What the reviews describe — see for yourself at the early-bird price", "rev.ctaB":"🍃 Start with the early-bird",
     "price.h":"Pricing",
-    "price.sub":"Early-bird only · <b>ends November 30</b> — then we <b>switch to subscription</b>. It will never be cheaper.",
+    "price.sub":"Early-bird only · <b>ends October 31</b> — then we <b>switch to subscription</b>. It will never be cheaper.",
     "price.c1.badge":"Tool only", "price.c1.h":"chuverleaf program", "price.c1.tag":"If you just need the preview tool.",
     "price.c1.l1":"All features, forever (one-time payment)", "price.c1.l2":"Subscription after the deadline — early birds keep it for life",
     "price.c1.l3":"Free updates (scope stated in the guide)",
@@ -585,7 +585,7 @@
 </script>
 
 <script>
-  // ===== 얼리버드 카운트다운 (초단위, 11월 30일 23:59 KST) =====
+  // ===== 얼리버드 카운트다운 (초단위, 10월 31일 23:59 KST) =====
   (function(){
     var el = document.getElementById('countdown'); if(!el) return;
     var deadline = new Date(el.getAttribute('data-deadline')).getTime();
