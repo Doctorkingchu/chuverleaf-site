@@ -1,7 +1,7 @@
 {
-  "latest": "1.4.1",
+  "latest": "1.5.8",
   "url": "https://drive.google.com/uc?export=download&id=1IcfuXnBPquIqj71vIEwN7kMZDv3dub9p",
   "download_win": "https://drive.google.com/uc?export=download&id=1IcfuXnBPquIqj71vIEwN7kMZDv3dub9p",
   "download_mac": "https://drive.google.com/uc?export=download&id=1MLa5GOWXdjn1S3CG6UX8XZJueBYEjlR2",
-  "notes": "원클릭 자동 업데이트 도입 — 배너 [지금 업데이트] 한 번이면 새 버전으로 교체·재실행. 이후 버전부터는 클릭 한 번으로 업데이트됩니다."
+  "notes": "바탕화면 아이콘 자동 생성 · 절전·새로고침에도 터미널이 끊기지 않음 · 터미널에서 Claude·Codex·Gemini 원클릭 실행과 스킬 설치(19종) · 화면 재접속 속도 대폭 개선 · 워드/한글 저장 안정성 강화."
 }
