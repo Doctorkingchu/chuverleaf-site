@@ -551,7 +551,8 @@
       bundle:  "https://buy.polar.sh/polar_cl_6sHvOGu7i5Af3UzKE4mmu5NfbaoX2GxuOfNMO1nHdDF"
     },
     betaLimit: 100,       // VIP 베타테스터 정원 — #seats data-limit 과 함께 관리 (둘 다 바꿔야 함)
-    userCount: 23,        // 수동 폴백 — countUrl 로딩 실패 시 사용 (2026-09-04 기준 주문 23건)
+    userCount: 24,        // 수동 폴백 — countUrl 로딩 실패 시 사용
+                          // (2026-09-04: 계좌이체 23 + Polar 카드 1 = 24)
     countUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR9YKUnIOM5k0OUe8N9p0qYCeWQ4IsmJYABcICcZ2Z6Bsg6Pay5iyVk2oh147HXVb4zYgIfDBKTlASB/pub?gid=1651731350&single=true&output=csv",  // Count 탭 B2 자동 집계
     reviewFormUrl: "",    // (대체) 외부 후기폼 링크 — reviewSubmit 미설정 시 버튼이 이 링크로
     reviewsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRbj-N2w65vnBmoIEZvM0beOdVh5K7S9pF5yZbc6HnQlJm38NaG0wj_xUV9oa2jDJ2ndZ5O9RsHeeo/pub?gid=829908814&single=true&output=csv",    // '공개후기' 탭 웹게시 CSV (이메일 없음 검증됨 2026-06-07)
@@ -565,6 +566,22 @@
       body:  "entry.525756836"    // 후기
     }
   };
+  // Count 시트 CSV → 주문 수. '전체'/'합산' 라벨이 있는 행의 옆 칸을 읽는다.
+  // 예전엔 'B2 위치'와 '텍스트의 마지막 숫자'에 의존해서, Count 시트에 상세 행을 추가하면
+  // 엉뚱한 숫자(예: 발송완료 건수)를 집어 왔다. 이제 라벨로 찾으므로 행을 늘려도 안전하다.
+  window.__chuCount = function(text){
+    var rows = String(text || "").replace(/\r/g, "").split("\n");
+    for (var i = 0; i < rows.length; i++) {
+      var c = rows[i].split(",");
+      if (/전체|합산|total/i.test(c[0] || "")) {
+        var v = parseInt((c[1] || "").replace(/[^0-9]/g, ""), 10);
+        if (v) { return v; }
+      }
+    }
+    var b2 = parseInt(((rows[1] || "").split(",")[1] || "").trim(), 10);   // 구형 폴백: B2
+    return b2 || 0;
+  };
+
   (function(){
     var C = CHUVERLEAF_CONFIG;
     var set = function(id,url){ var e=document.getElementById(id); if(e&&url){ e.setAttribute("href",url); } };
@@ -591,10 +608,7 @@
       };
       if(C.countUrl){
         fetch(C.countUrl, {cache:"no-store"}).then(function(r){ return r.text(); }).then(function(t){
-          var n=0, rows=t.replace(/\r/g,"").split("\n");
-          if(rows.length>=2){ n=parseInt((rows[1].split(",")[1]||"").trim(),10)||0; }   // B2
-          if(!n){ var m=t.match(/\d+/g); if(m){ n=parseInt(m[m.length-1],10)||0; } }    // 폴백: 마지막 숫자
-          show(n||fallback);
+          show(window.__chuCount(t) || fallback);
         }).catch(function(){ show(fallback); });
       } else { show(fallback); }
       // 언어 전환 시 현재 인원수로 문구 재생성 (EN ↔ KO)
@@ -632,17 +646,10 @@
       el.classList.toggle('full', left <= 0);
       if(left <= 0 && note) note.innerHTML = hpt('🎫 100자리가 모두 찼습니다 — 이후 구매는 구독제로 안내드립니다.','seat.full');
     }
-    // usercount 와 동일한 파싱(B2 → 실패 시 마지막 숫자)
-    function parseCount(text){
-      var n = 0, rows = text.replace(/\r/g,"").split("\n");
-      if(rows.length >= 2){ n = parseInt((rows[1].split(",")[1]||"").trim(),10) || 0; }
-      if(!n){ var m2 = text.match(/\d+/g); if(m2){ n = parseInt(m2[m2.length-1],10) || 0; } }
-      return n;
-    }
     render();
     if(C.countUrl){
       fetch(C.countUrl, {cache:"no-store"}).then(function(r){ return r.text(); })
-        .then(function(t){ taken = parseCount(t) || taken; render(); })
+        .then(function(t){ taken = window.__chuCount(t) || taken; render(); })
         .catch(function(){ /* 폴백값 유지 */ });
     }
     var ls = document.getElementById('lang-select-hp');
