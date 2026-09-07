@@ -19,6 +19,10 @@
 /%EA%B5%AC%EB%A7%A4    /?utm_source=instagram&utm_medium=bio   302
 /buy       /?utm_source=instagram&utm_medium=bio              302
 /ig        /?utm_source=instagram&utm_medium=bio              302
+# 개인 계정(@chu___chuuuuu) bio — 브랜드 계정과 반드시 utm_medium 을 갈라야
+# 어느 쪽이 사람을 데려왔는지 알 수 있다. utm_source 는 둘 다 instagram 이라
+# source 로 묶으면 인스타 전체, medium 으로 나누면 계정별로 보인다.
+/chu       /?utm_source=instagram&utm_medium=bio_personal     302
 /reels     /?utm_source=instagram&utm_medium=reels            302
 /card      /?utm_source=instagram&utm_medium=cardnews         302
 /gb        /?utm_source=gabangkkeun&utm_medium=community      302
