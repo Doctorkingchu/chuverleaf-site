@@ -1,0 +1,19 @@
+# Netlify 리다이렉트 — 채널별 짧은 링크
+#
+# 왜: 인스타 프로필(bio)은 링크를 URL 그대로 노출한다. 제목을 붙여도 링크가 하나뿐이면
+#     제목 대신 주소가 보인다. utm 을 붙이면 주소가 길고 지저분해지는데(2026-09-07 확인),
+#     그렇다고 utm 을 떼면 인스타 유입을 셀 수 없다.
+# 해결: 짧은 경로를 만들어 utm 붙은 주소로 넘긴다. bio 에는 chuverleaf.com/ig 만 적으면 되고,
+#     클릭하면 utm 이 붙은 채로 랜딩에 도착하므로 Mixpanel 측정은 그대로 된다.
+#
+# ⚠ 302(임시 리다이렉트)여야 한다. 200(rewrite)은 주소창이 /ig 로 남아 쿼리가 전달되지 않고,
+#   301(영구)은 브라우저가 캐시해 나중에 링크를 바꿔도 옛 목적지로 가버린다.
+#
+# 링크 목록의 정본은 chuverleaf-doc\3_판매·운영\UTM\UTM_링크_모음.txt — 여기와 같이 관리한다.
+
+/ig        /?utm_source=instagram&utm_medium=bio              302
+/reels     /?utm_source=instagram&utm_medium=reels            302
+/card      /?utm_source=instagram&utm_medium=cardnews         302
+/gb        /?utm_source=gabangkkeun&utm_medium=community      302
+/snu       /?utm_source=snu&utm_medium=community              302
+/kakao     /?utm_source=kakao&utm_medium=chat&utm_campaign=launch  302
