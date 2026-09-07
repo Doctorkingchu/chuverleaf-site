@@ -27,4 +27,7 @@
 /card      /?utm_source=instagram&utm_medium=cardnews         302
 /gb        /?utm_source=gabangkkeun&utm_medium=community      302
 /snu       /?utm_source=snu&utm_medium=community              302
+# 에브리타임 — 친구들이 각 학교 게시판에 올릴 때 쓴다. 학교별로 링크를 쪼개지 않는다
+# (관리비용이 이득보다 크다). 어느 학교가 먹혔는지는 매칭표의 게시일과 유입 시각을 대조.
+/et        /?utm_source=everytime&utm_medium=community        302
 /kakao     /?utm_source=kakao&utm_medium=chat&utm_campaign=launch  302
