@@ -291,10 +291,11 @@
   </div>
 
   <div style="text-align:center;margin-top:34px">
-    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:17px 46px" data-i18n="price.buyAll">🍃 베스트 구성(번들)으로 바로 결제</a>
+    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:17px 46px" data-i18n="price.buyAll">🍃 프로그램 바로 결제 (카드)</a>
   </div>
   <p class="note" data-i18n-html="price.note">💳 카드 결제는 즉시 완료(달러·원화 표시) · 🏦 계좌이체는 주문서 제출 후 입금 확인 ·
-     어떤 방식이든 <b>24시간 내 메일로 다운로드 링크</b>를 보내드립니다 · 7일 청약철회 가능.</p>
+     어떤 방식이든 <b>24시간 내 메일로 다운로드 링크</b>를 보내드립니다 · 7일 청약철회 가능.<br>
+     <b>1:1 코칭이 포함된 상품</b>은 일정 조율이 필요해 <b>계좌이체로만</b> 주문받습니다.</p>
 </div></section>
 
 <!-- 후기 -->
@@ -487,8 +488,8 @@
     "price.c3.l3":"📄 <b>Straight into your own document</b> — paper, proposal, report",
     "price.c3.l4":"⚡ Essentials only · keep asking afterwards",
     "price.c3.l5":"🎫 <b class=\"grad\">VIP beta tester · 100 seats only</b> · lifetime use locked in",
-    "price.buyAll": "🍃 Checkout the best bundle now",
-    "price.note": '💳 Card payments complete instantly · your download link is emailed <b>within 24 hours</b> · 7-day withdrawal (refund) available.',
+    "price.buyAll": "🍃 Buy chuverleaf now (card)",
+    "price.note": '💳 Card payments complete instantly · your download link is emailed <b>within 24 hours</b> · 7-day withdrawal (refund) available.<br><b>Plans that include 1:1 coaching</b> are taken by <b>bank transfer only</b> (Korea), since the session has to be scheduled.',
     "faq.h":"Frequently asked questions",
     "faq.q1":"How does the 1:1 AI coaching work?",
     "faq.a1":"<b>60 minutes, one to one.</b> Pick whichever suits you — <b>video call</b> or <b>in person</b> (Seoul). Instead of reading out a fixed curriculum, we open <b>the document you're actually writing</b> (paper, proposal, report — anything) and cover <b>only what you need</b>: using Claude Code·Codex directly on your files, and getting the most out of chuverleaf. We arrange a time by email after purchase, and you can <b>keep asking questions afterwards</b>.",
@@ -545,10 +546,14 @@
   // ===== 주문서(구글폼) URL — 모든 구매 버튼이 여기로 연결 =====
   const CHUVERLEAF_CONFIG = {
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWfnqCJDgByVR6YGFu8-scUu7XpVd9S7zHrjcdjRjaiGalAw/viewform",
-    polar: {  // Polar(MOR) 카드결제 체크아웃 — 상품별 링크
-      program: "https://buy.polar.sh/polar_cl_d8glcaReDdq3kPh4gSDKCuE9Lop6D1GkDboDA1h4GGx",
-      course:  "https://buy.polar.sh/polar_cl_H52BtelXtZ46BOymVNcNoZX4i28qyKnTS836M2Mkg5p",
-      bundle:  "https://buy.polar.sh/polar_cl_6sHvOGu7i5Af3UzKE4mmu5NfbaoX2GxuOfNMO1nHdDF"
+    // Polar(MOR) 카드결제 체크아웃 — 상품별 링크.
+    // ⚠ 2026-09-11 Polar 통지: Polar 는 Merchant of Record 라 **사람이 직접 제공하는
+    //   서비스**를 팔 수 없다(소프트웨어와 묶어도 마찬가지). 1:1 AI 코칭이 60분 화상·대면
+    //   세션이므로 `course` 와 `bundle` 의 체크아웃을 내렸다.
+    //   → 코칭이 든 상품은 **계좌이체(구글폼)로만** 받는다. 상품 자체는 그대로 판다.
+    //   여기에 course/bundle 을 다시 넣지 말 것 — 계정 정지 사유가 된다.
+    polar: {
+      program: "https://buy.polar.sh/polar_cl_d8glcaReDdq3kPh4gSDKCuE9Lop6D1GkDboDA1h4GGx"
     },
     betaLimit: 100,       // VIP 베타테스터 정원 — #seats data-limit 과 함께 관리 (둘 다 바꿔야 함)
     userCount: 24,        // 수동 폴백 — countUrl 로딩 실패 시 사용
@@ -586,12 +591,26 @@
     var C = CHUVERLEAF_CONFIG;
     var set = function(id,url){ var e=document.getElementById(id); if(e&&url){ e.setAttribute("href",url); } };
     // 카드결제(Polar) — 카드별 상품 링크 / 계좌이체 — 구글폼 주문서
+    // Polar 링크가 없는 상품(코칭·번들 — 위 주석 참조)은 카드결제 버튼을 아예 없애고
+    // 계좌이체를 그 카드의 '주 버튼'으로 올린다. 버튼만 남겨두면 눌러도 아무 일이
+    // 없거나 엉뚱한 곳으로 가므로, 감추는 게 아니라 제거한다.
     ["program","course","bundle"].forEach(function(k){
-      if (C.polar) set("pay-card-"+k, C.polar[k]);
+      var link = C.polar && C.polar[k];
+      var cardBtn = document.getElementById("pay-card-"+k);
+      if (link) {
+        set("pay-card-"+k, link);
+      } else if (cardBtn) {
+        var bankBtn = document.getElementById("pay-bank-"+k);
+        if (bankBtn) bankBtn.className = "btn-buy";   // 보조 링크 → 주 버튼
+        cardBtn.parentNode.removeChild(cardBtn);
+      }
       set("pay-bank-"+k, C.formUrl);
     });
-    set("buy-all", C.polar ? C.polar.bundle : C.formUrl);
-    set("m-buy", C.polar ? C.polar.bundle : C.formUrl);   // 모바일 하단 바 → 번들 카드결제  // 통합 버튼 → 번들 카드결제
+    // 통합 버튼은 **프로그램 단품**(Polar 로 팔 수 있는 유일한 상품)으로 보낸다.
+    // 예전에는 번들 체크아웃이었는데, 번들에 코칭이 들어 있어 Polar 로 결제할 수 없다.
+    set("buy-all", C.polar && C.polar.program ? C.polar.program : C.formUrl);
+    // 모바일 하단 바는 링크를 덮어쓰지 않는다 — 기본 href="#pricing" 으로 가격 섹션에
+    // 내려보내고, 결제 수단은 각 카드에서 고르게 한다.
     // 영어 모드: 계좌이체(국내 전용) 버튼 숨김
     var langSelPay = document.getElementById("lang-select-hp");
     var markEn = function(){ document.body.classList.toggle("en-mode", !!(langSelPay && langSelPay.value === "en")); };
