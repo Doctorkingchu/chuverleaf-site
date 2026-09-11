@@ -5,7 +5,8 @@
   ※ 얼리버드 마감 기준 = 날짜가 아니라 '인원수'. 선착순 100명(VIP 베타테스터)까지만 1회 결제·평생 이용.
      한도는 #seats data-limit, 현재 주문 수는 CHUVERLEAF_CONFIG.countUrl(구글시트 자동 집계)에서 읽는다.
      101번째부터 구독제 전환 예정 — 마감되면 카운터가 자동으로 대기 안내로 바뀐다.
-  ※ 가격(KO): 정가 ₩29,900 → 얼리버드 ₩14,900 (50% OFF) · EN 페이지는 USD($9.99) 유지.
+  ※ 가격(KO): 정가 ₩44,900 → 얼리버드 ₩22,900 (50% OFF) · EN 페이지는 USD($14.99) 유지.
+  ※ 2026-09-11 인상: 프로그램 $9.99→$14.99 (1.5배), 나머지도 같은 비율. Polar 상품 가격도 함께 바꿀 것.
   ※ '강의 5강' → '1:1 AI 코칭'(온·오프라인)으로 상품 개편 (2026-09-04, DDM 스파크랩 자문 반영).
   ※ 정적 파일 — 폴더째 Netlify/GitHub Pages/Vercel 에 배포.
 -->
@@ -14,7 +15,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>chuverleaf — 문서 작업이 이렇게 빨라도 돼? 로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + AI</title>
-<meta name="description" content="한글(HWP)·Word·PPT·Excel·LaTeX 실시간 미리보기 + AI 패널, 전부 내 PC에서. 엑셀은 값만 고쳐도 서식·수식 보존. 선착순 100명 VIP 베타테스터 한정 ₩14,900 (정가 ₩29,900).">
+<meta name="description" content="한글(HWP)·Word·PPT·Excel·LaTeX 실시간 미리보기 + AI 패널, 전부 내 PC에서. 엑셀은 값만 고쳐도 서식·수식 보존. 선착순 100명 VIP 베타테스터 한정 ₩22,900 (정가 ₩44,900).">
 <link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="canonical" href="https://chuverleaf.com/">
@@ -22,7 +23,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="chuverleaf">
 <meta property="og:title" content="문서 작업이 이렇게 빨라도 돼? — chuverleaf, 로컬 LaTeX·Word·한글·PPT·Excel + AI">
-<meta property="og:description" content="내 PC에서 한글·Word·PPT·엑셀·LaTeX 실시간 미리보기 + 1:1 AI 코칭까지. 선착순 100명 한정 ₩14,900 (정가 ₩29,900).">
+<meta property="og:description" content="내 PC에서 한글·Word·PPT·엑셀·LaTeX 실시간 미리보기 + 1:1 AI 코칭까지. 선착순 100명 한정 ₩22,900 (정가 ₩44,900).">
 <meta property="og:url" content="https://chuverleaf.com/">
 <meta property="og:image" content="https://chuverleaf.com/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -30,7 +31,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="문서 작업이 이렇게 빨라도 돼? — chuverleaf">
-<meta name="twitter:description" content="로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + 1:1 AI 코칭. 선착순 100명 한정 ₩14,900.">
+<meta name="twitter:description" content="로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + 1:1 AI 코칭. 선착순 100명 한정 ₩22,900.">
 <meta name="twitter:image" content="https://chuverleaf.com/og-image.png">
 
 <link rel="stylesheet" href="style.css">
@@ -45,7 +46,7 @@
     <a href="#bundle" data-i18n="nav.bundle">1:1 코칭</a>
     <a href="#reviews" data-i18n="nav.reviews">후기</a>
     <a href="#faq" data-i18n="faq">FAQ</a>
-    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">₩14,900 · 100명 한정 🍃</a>
+    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">₩22,900 · 100명 한정 🍃</a>
     <select id="lang-select-hp" aria-label="Language" class="lang-sel">
       <option value="ko">🌐 한국어</option>
       <option value="en">🌐 English</option>
@@ -60,8 +61,8 @@
     <p class="lede" data-i18n="hero.lede">한글·Word·LaTeX·엑셀 + AI를 한 화면에. 내 PC에서 바로 고치고, 저장하면 바로 보인다.</p>
 
     <div class="cta">
-      <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">지금 ₩14,900에 시작 →</a>
-      <div class="sticker" data-i18n-html="hero.sticker">50% OFF<s>₩29,900</s></div>
+      <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">지금 ₩22,900에 시작 →</a>
+      <div class="sticker" data-i18n-html="hero.sticker">50% OFF<s>₩44,900</s></div>
       <a class="btn-ghost" id="apply-form" href="#features" data-i18n="hero.ctaWhy">기능 둘러보기</a>
     </div>
     
@@ -225,8 +226,8 @@
       <span class="badge plain" data-i18n="price.c1.badge">도구만</span>
       <h3 data-i18n="price.c1.h">chuverleaf 프로그램</h3>
       <div class="amtrow">
-        <span class="amt" data-i18n-html="price.c1.amt">₩14,900</span>
-        <span class="was" data-i18n="price.c1.was">₩29,900</span>
+        <span class="amt" data-i18n-html="price.c1.amt">₩22,900</span>
+        <span class="was" data-i18n="price.c1.was">₩44,900</span>
         <span class="off">50% OFF</span>
       </div>
       
@@ -247,7 +248,7 @@
       <span class="badge plain" data-i18n="price.c2.badge">코칭만</span>
       <h3 data-i18n="price.c2.h">1:1 AI 코칭</h3>
       <div class="amtrow">
-        <span class="amt" data-i18n-html="price.c2.amt">₩22,900</span>
+        <span class="amt" data-i18n-html="price.c2.amt">₩34,900</span>
       </div>
       
       <p class="tagline" data-i18n="price.c2.tag">프로그램은 있고, 제대로 쓰는 법만 배우고 싶다면.</p>
@@ -268,12 +269,12 @@
       <span class="badge" data-i18n="price.c3.badge">BEST · 1:1 코칭 포함</span>
       <h3 data-i18n="price.c3.h">프로그램 + 1:1 AI 코칭</h3>
       <div class="amtrow">
-        <span class="amt" data-i18n-html="price.c3.amt">₩29,900</span>
-        <span class="was" data-i18n="price.c3.was">₩49,900</span>
+        <span class="amt" data-i18n-html="price.c3.amt">₩44,900</span>
+        <span class="was" data-i18n="price.c3.was">₩74,900</span>
         <span class="off" data-i18n="price.c3.off">한정가</span>
       </div>
       
-      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">코칭이 사실상 ₩15,000</b> — 도구 + 제대로 쓰는 법 = 진짜 변화.</p>
+      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">코칭이 사실상 ₩22,000</b> — 도구 + 제대로 쓰는 법 = 진짜 변화.</p>
       <ul>
         <li data-i18n="price.c3.l1">프로그램 전 기능 + 평생 사용</li>
         <li data-i18n-html="price.c3.l2">🎥 <b>1:1 코칭 60분</b> — 온라인·오프라인 중 편한 쪽</li>
@@ -356,7 +357,7 @@
     <details><summary data-i18n="faq.q3">구독인가요?</summary>
       <p data-i18n="faq.a3">선착순 100명(VIP 베타테스터)까지는 1회 결제 후 평생 사용입니다. 100명이 차면 이후 구매자부터 구독제로 전환될 예정이지만, 앞선 100명은 영향 없이 평생 사용하며 업데이트도 계속 무료로 받습니다.</p></details>
     <details><summary data-i18n="faq.q4">결제·환불은요?</summary>
-      <p data-i18n-html="faq.a4">한국은 원화 정찰 가격(₩14,900~)으로 결제됩니다 (해외는 USD). 환불은
+      <p data-i18n-html="faq.a4">한국은 원화 정찰 가격(₩22,900~)으로 결제됩니다 (해외는 USD). 환불은
          <a href="refund.html">환불정책</a>을 참고하세요.</p></details>
   </div>
 </div></section>
@@ -378,7 +379,7 @@
 
 <!-- 모바일 하단 고정 결제 바 (스크롤 시 표시 · 가격/푸터 화면에선 숨김) -->
 <div class="m-bar" id="m-bar">
-  <div class="m-bar-info"><span data-i18n-html="mbar.price"><b>₩29,900</b> <s>₩49,900</s></span><br><span data-i18n="mbar.t">번들 · 선착순 100명 한정</span></div>
+  <div class="m-bar-info"><span data-i18n-html="mbar.price"><b>₩44,900</b> <s>₩74,900</s></span><br><span data-i18n="mbar.t">번들 · 선착순 100명 한정</span></div>
   <a class="m-bar-btn" id="m-buy" href="#pricing" data-i18n="mbar.buy">바로 결제 →</a>
 </div>
 
@@ -387,11 +388,11 @@
 (function(){
   var KEY = "chuverleaf:hp-lang";
   var EN = {
-    "hero.sticker": '50% OFF<s>$19.99</s>',
-    "price.c1.amt": '$9.99 <small>USD</small>', "price.c1.was": "$19.99",
-    "price.c2.amt": '$14.99 <small>USD</small>',
-    "price.c3.amt": '$19.99 <small>USD</small>', "price.c3.was": "$34.98",
-    "mbar.price": '<b>$19.99</b> <s>$34.98</s>',
+    "hero.sticker": '50% OFF<s>$29.99</s>',
+    "price.c1.amt": '$14.99 <small>USD</small>', "price.c1.was": "$29.99",
+    "price.c2.amt": '$22.99 <small>USD</small>',
+    "price.c3.amt": '$29.99 <small>USD</small>', "price.c3.was": "$52.98",
+    "mbar.price": '<b>$29.99</b> <s>$52.98</s>',
     "pay.card": "💳 Pay by card", "pay.bank": "🏦 Bank transfer (KRW, Korea only)",
     "price.tleft": "⚡ Seats left", "mbar.t": "bundle · 100 seats only", "mbar.buy": "Buy now →",
     "mq.1": "📄 Live LaTeX compile", "mq.2": "📝 HWP·Word·PPT preview",
@@ -413,7 +414,7 @@
     "cards.hint": "Tap a card to enlarge · swipe sideways · 10 cards ·", "cards.ig": "See it on Instagram 📸",
     "footer.devig": "Developer @chu___chuuuuu",
     "_title": "chuverleaf — Can document work really be this fast? Local LaTeX·Word·Hangul·PPT·Excel live preview + AI · 100 seats only",
-    "nav.features":"Features", "nav.bundle":"1:1 Coaching", "nav.reviews":"Reviews", "faq":"FAQ", "nav.buy":"$9.99 · 100 seats 🍃",
+    "nav.features":"Features", "nav.bundle":"1:1 Coaching", "nav.reviews":"Reviews", "faq":"FAQ", "nav.buy":"$14.99 · 100 seats 🍃",
     "hero.wedge":"⚡ Save → preview in 0.5s",
     "hero.h1":"Can document work<br>really be <span class=\"grad\">this fast?</span>",
     "hero.lede":"Hangul, Word, LaTeX, Excel + AI on one screen. Fix it right on your PC — save, and see it instantly.",
@@ -422,7 +423,7 @@
     "vip.h":"Buy now and you're a <b class=\"grad\">VIP beta tester</b>",
     "vip.p":"Only the first <b>100</b> get <b>one payment, lifetime use</b>. In return, tell us what felt awkward — your feedback becomes the next version. Not maker and customer, but <b>people building it together</b>.<br>From <b>#101 it becomes a subscription</b>, but the first 100 keep theirs <b>for life</b>.",
     "hero.cdNote":"🎫 Only the <b>first 100</b> get <b>lifetime use</b> for one payment — from #101 it becomes a <b>subscription</b>",
-    "hero.ctaBuy":"Start now for $9.99 →", "hero.ctaWhy":"Explore features",
+    "hero.ctaBuy":"Start now for $14.99 →", "hero.ctaWhy":"Explore features",
     "hero.trust":"✓ Local-only · ✓ Hangul·Word·PPT·Excel·LaTeX · ✓ AI panel · ✓ 100 seats · lifetime use",
     "feat.latex.h":"📄 Live LaTeX",
     "feat.latex.p":"Auto-compiles and previews the moment you save. Korean docs auto-pick xelatex; click an error to jump to its line.",
@@ -484,7 +485,7 @@
     "price.c2.l3":"⚡ <b>60 minutes, essentials only</b> — no five-hour course to sit through",
     "price.c2.l4":"💬 Keep asking questions after the session",
     "price.c3.badge":"BEST · includes 1:1 coaching", "price.c3.h":"Program + 1:1 AI coaching", "price.c3.off":"Limited price",
-    "price.c3.tag":"<b class=\"grad\">The coaching is effectively $10</b> — tool + knowing how to use it = real change.",
+    "price.c3.tag":"<b class=\"grad\">The coaching is effectively $15</b> — tool + knowing how to use it = real change.",
     "price.c3.l1":"All program features + lifetime use",
     "price.c3.l2":"🎥 <b>60-min 1:1 coaching</b> — online or in person",
     "price.c3.l3":"📄 <b>Straight into your own document</b> — paper, proposal, report",
