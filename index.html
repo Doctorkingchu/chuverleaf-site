@@ -5,8 +5,11 @@
   ※ 얼리버드 마감 기준 = 날짜가 아니라 '인원수'. 선착순 100명(VIP 베타테스터)까지만 1회 결제·평생 이용.
      한도는 #seats data-limit, 현재 주문 수는 CHUVERLEAF_CONFIG.countUrl(구글시트 자동 집계)에서 읽는다.
      101번째부터 구독제 전환 예정 — 마감되면 카운터가 자동으로 대기 안내로 바뀐다.
-  ※ 가격(KO): 정가 ₩44,900 → 얼리버드 ₩22,900 (50% OFF) · EN 페이지는 USD($14.99) 유지.
-  ※ 2026-09-11 인상: 프로그램 $9.99→$14.99 (1.5배), 나머지도 같은 비율. Polar 상품 가격도 함께 바꿀 것.
+  ※ 가격(KO): 정가 ₩29,900 → 🏦 계좌이체 ₩14,900 (50% OFF) · 💳 카드 ₩22,900. 큰 숫자는 전부 계좌이체가다.
+  ※ 코칭 ₩22,900 · 번들 ₩29,900 은 계좌이체 전용(Polar 가 코칭을 못 판다). EN 페이지는 USD 카드가만 쓴다.
+  ※ 2026-09-11: 카드(Polar) 단가만 인상($9.99→$14.99 · ₩22,900). 계좌이체는 ₩14,900 그대로 두고,
+  ※   수수료가 없어 8,000원 싸다는 것을 프로그램 카드의 비교표(.paycompare)로 어필한다.
+  ※   가격 정본 = chuverleaf-doc/3_판매·운영/가격_정본.md — 여기를 고치면 그 파일도 같이 고칠 것.
   ※ '강의 5강' → '1:1 AI 코칭'(온·오프라인)으로 상품 개편 (2026-09-04, DDM 스파크랩 자문 반영).
   ※ 정적 파일 — 폴더째 Netlify/GitHub Pages/Vercel 에 배포.
 -->
@@ -15,7 +18,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>chuverleaf — 문서 작업이 이렇게 빨라도 돼? 로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + AI</title>
-<meta name="description" content="한글(HWP)·Word·PPT·Excel·LaTeX 실시간 미리보기 + AI 패널, 전부 내 PC에서. 엑셀은 값만 고쳐도 서식·수식 보존. 선착순 100명 VIP 베타테스터 한정 ₩22,900 (정가 ₩44,900).">
+<meta name="description" content="한글(HWP)·Word·PPT·Excel·LaTeX 실시간 미리보기 + AI 패널, 전부 내 PC에서. 엑셀은 값만 고쳐도 서식·수식 보존. 선착순 100명 VIP 베타테스터 한정 ₩14,900 (정가 ₩29,900, 계좌이체가).">
 <link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="canonical" href="https://chuverleaf.com/">
@@ -23,7 +26,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="chuverleaf">
 <meta property="og:title" content="문서 작업이 이렇게 빨라도 돼? — chuverleaf, 로컬 LaTeX·Word·한글·PPT·Excel + AI">
-<meta property="og:description" content="내 PC에서 한글·Word·PPT·엑셀·LaTeX 실시간 미리보기 + 1:1 AI 코칭까지. 선착순 100명 한정 ₩22,900 (정가 ₩44,900).">
+<meta property="og:description" content="내 PC에서 한글·Word·PPT·엑셀·LaTeX 실시간 미리보기 + 1:1 AI 코칭까지. 선착순 100명 한정 ₩14,900 (정가 ₩29,900).">
 <meta property="og:url" content="https://chuverleaf.com/">
 <meta property="og:image" content="https://chuverleaf.com/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -31,7 +34,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="문서 작업이 이렇게 빨라도 돼? — chuverleaf">
-<meta name="twitter:description" content="로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + 1:1 AI 코칭. 선착순 100명 한정 ₩22,900.">
+<meta name="twitter:description" content="로컬 LaTeX·Word·한글·PPT·Excel 실시간 미리보기 + 1:1 AI 코칭. 선착순 100명 한정 ₩14,900.">
 <meta name="twitter:image" content="https://chuverleaf.com/og-image.png">
 
 <link rel="stylesheet" href="style.css">
@@ -46,7 +49,7 @@
     <a href="#bundle" data-i18n="nav.bundle">1:1 코칭</a>
     <a href="#reviews" data-i18n="nav.reviews">후기</a>
     <a href="#faq" data-i18n="faq">FAQ</a>
-    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">₩22,900 · 100명 한정 🍃</a>
+    <a class="nav-cta" href="#pricing" data-i18n="nav.buy">₩14,900 · 100명 한정 🍃</a>
     <select id="lang-select-hp" aria-label="Language" class="lang-sel">
       <option value="ko">🌐 한국어</option>
       <option value="en">🌐 English</option>
@@ -61,10 +64,11 @@
     <p class="lede" data-i18n="hero.lede">한글·Word·LaTeX·엑셀 + AI를 한 화면에. 내 PC에서 바로 고치고, 저장하면 바로 보인다.</p>
 
     <div class="cta">
-      <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">지금 ₩22,900에 시작 →</a>
-      <div class="sticker" data-i18n-html="hero.sticker">50% OFF<s>₩44,900</s></div>
+      <a class="btn-buy" href="#pricing" data-i18n="hero.ctaBuy">지금 ₩14,900에 시작 →</a>
+      <div class="sticker" data-i18n-html="hero.sticker">50% OFF<s>₩29,900</s></div>
       <a class="btn-ghost" id="apply-form" href="#features" data-i18n="hero.ctaWhy">기능 둘러보기</a>
     </div>
+    <p class="pay-hint">🏦 <b>계좌이체 기준 가격</b>입니다 — 카드로 결제하시면 ₩22,900 (수수료 포함).</p>
     
 
     <!-- VIP 베타테스터 100명 한정 — 남은 자리 (날짜 마감 아님) -->
@@ -226,9 +230,21 @@
       <span class="badge plain" data-i18n="price.c1.badge">도구만</span>
       <h3 data-i18n="price.c1.h">chuverleaf 프로그램</h3>
       <div class="amtrow">
-        <span class="amt" data-i18n-html="price.c1.amt">₩22,900</span>
-        <span class="was" data-i18n="price.c1.was">₩44,900</span>
+        <span class="amt" data-i18n-html="price.c1.amt">₩14,900</span>
+        <span class="was" data-i18n="price.c1.was">₩29,900</span>
         <span class="off">50% OFF</span>
+      </div>
+      <div class="paycompare">
+        <div class="pc-row pc-best">
+          <span class="pc-way">🏦 계좌이체</span>
+          <span class="pc-amt">₩14,900</span>
+          <span class="pc-tag">-8,000원</span>
+        </div>
+        <div class="pc-row">
+          <span class="pc-way">💳 카드 결제</span>
+          <span class="pc-amt">₩22,900</span>
+        </div>
+        <p class="pc-why">카드는 해외 결제사 수수료가 붙습니다. <b>계좌이체는 그 수수료가 없어 그만큼 돌려드립니다.</b></p>
       </div>
       
       <p class="tagline" data-i18n="price.c1.tag">미리보기 도구만 필요하면.</p>
@@ -237,9 +253,9 @@
         <li data-i18n="price.c1.l2">100명 이후 구독제 — VIP 100명은 평생 소장</li>
         <li data-i18n="price.c1.l3">무료 업데이트 (범위는 안내에 명시)</li>
       </ul>
-      <div class="paybtns">
-        <a class="btn-buy pay-card" id="pay-card-program" href="#" data-i18n="pay.card">💳 카드로 구매</a>
-        <a class="pay-bank" id="pay-bank-program" href="#" data-i18n="pay.bank">🏦 계좌이체로 주문 (원화)</a>
+      <div class="paybtns bank-first">
+        <a class="pay-bank" id="pay-bank-program" href="#" data-i18n="pay.bankBuy">🏦 계좌이체로 주문 — ₩14,900</a>
+        <a class="btn-buy pay-card" id="pay-card-program" href="#" data-i18n="pay.cardBuy">💳 카드로 구매 — ₩22,900</a>
       </div>
 
     </div>
@@ -248,7 +264,8 @@
       <span class="badge plain" data-i18n="price.c2.badge">코칭만</span>
       <h3 data-i18n="price.c2.h">1:1 AI 코칭</h3>
       <div class="amtrow">
-        <span class="amt" data-i18n-html="price.c2.amt">₩34,900</span>
+        <span class="amt" data-i18n-html="price.c2.amt">₩22,900</span>
+        <span class="bank-only">🏦 계좌이체 전용</span>
       </div>
       
       <p class="tagline" data-i18n="price.c2.tag">프로그램은 있고, 제대로 쓰는 법만 배우고 싶다면.</p>
@@ -261,6 +278,7 @@
       <div class="paybtns">
         <a class="btn-buy pay-card" id="pay-card-course" href="#" data-i18n="pay.card">💳 카드로 구매</a>
         <a class="pay-bank" id="pay-bank-course" href="#" data-i18n="pay.bank">🏦 계좌이체로 주문 (원화)</a>
+        <a class="pay-mail" href="mailto:yeonouk1@snu.ac.kr?subject=chuverleaf%201%3A1%20AI%20coaching%20order">✉ Email to order</a>
       </div>
 
     </div>
@@ -269,12 +287,13 @@
       <span class="badge" data-i18n="price.c3.badge">BEST · 1:1 코칭 포함</span>
       <h3 data-i18n="price.c3.h">프로그램 + 1:1 AI 코칭</h3>
       <div class="amtrow">
-        <span class="amt" data-i18n-html="price.c3.amt">₩44,900</span>
-        <span class="was" data-i18n="price.c3.was">₩74,900</span>
+        <span class="amt" data-i18n-html="price.c3.amt">₩29,900</span>
+        <span class="was" data-i18n="price.c3.was">₩49,900</span>
         <span class="off" data-i18n="price.c3.off">한정가</span>
+        <span class="bank-only">🏦 계좌이체 전용</span>
       </div>
       
-      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">코칭이 사실상 ₩22,000</b> — 도구 + 제대로 쓰는 법 = 진짜 변화.</p>
+      <p class="tagline" data-i18n-html="price.c3.tag"><b class="grad">코칭이 사실상 ₩15,000</b> — 도구 + 제대로 쓰는 법 = 진짜 변화.</p>
       <ul>
         <li data-i18n="price.c3.l1">프로그램 전 기능 + 평생 사용</li>
         <li data-i18n-html="price.c3.l2">🎥 <b>1:1 코칭 60분</b> — 온라인·오프라인 중 편한 쪽</li>
@@ -285,6 +304,7 @@
       <div class="paybtns">
         <a class="btn-buy pay-card" id="pay-card-bundle" href="#" data-i18n="pay.card">💳 카드로 구매</a>
         <a class="pay-bank" id="pay-bank-bundle" href="#" data-i18n="pay.bank">🏦 계좌이체로 주문 (원화)</a>
+        <a class="pay-mail" href="mailto:yeonouk1@snu.ac.kr?subject=chuverleaf%20bundle%20order">✉ Email to order</a>
       </div>
 
     </div>
@@ -292,9 +312,11 @@
   </div>
 
   <div style="text-align:center;margin-top:34px">
-    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:17px 46px" data-i18n="price.buyAll">🍃 프로그램 바로 결제 (카드)</a>
+    <a class="btn-buy" id="buy-all" href="#" style="font-size:18px;padding:17px 46px" data-i18n="price.buyAll">🏦 계좌이체로 주문 — ₩14,900 (최저가)</a>
+    <p class="pay-hint">카드로 즉시 결제하고 싶으시면 위 <b>프로그램</b> 카드의 «💳 카드로 구매» 를 눌러 주세요 (₩22,900).</p>
   </div>
-  <p class="note" data-i18n-html="price.note">💳 카드 결제는 즉시 완료(달러·원화 표시) · 🏦 계좌이체는 주문서 제출 후 입금 확인 ·
+  <p class="note" data-i18n-html="price.note">🏦 <b>계좌이체가 ₩8,000 저렴합니다</b> — 카드 결제에 붙는 해외 결제사 수수료가 없기 때문입니다.<br>
+     💳 카드 결제는 즉시 완료(달러·원화 표시) · 🏦 계좌이체는 주문서 제출 후 입금 확인 ·
      어떤 방식이든 <b>24시간 내 메일로 다운로드 링크</b>를 보내드립니다 · 7일 청약철회 가능.<br>
      <b>1:1 코칭이 포함된 상품(코칭 · 번들)은 계좌이체로 주문해 주세요.</b>
      일정을 함께 잡아야 하는 서비스라 카드결제를 받지 않습니다.<br>
@@ -357,7 +379,7 @@
     <details><summary data-i18n="faq.q3">구독인가요?</summary>
       <p data-i18n="faq.a3">선착순 100명(VIP 베타테스터)까지는 1회 결제 후 평생 사용입니다. 100명이 차면 이후 구매자부터 구독제로 전환될 예정이지만, 앞선 100명은 영향 없이 평생 사용하며 업데이트도 계속 무료로 받습니다.</p></details>
     <details><summary data-i18n="faq.q4">결제·환불은요?</summary>
-      <p data-i18n-html="faq.a4">한국은 원화 정찰 가격(₩22,900~)으로 결제됩니다 (해외는 USD). 환불은
+      <p data-i18n-html="faq.a4">한국은 원화 정찰 가격(계좌이체 ₩14,900~ · 카드 ₩22,900~)으로 결제됩니다 (해외는 USD). 환불은
          <a href="refund.html">환불정책</a>을 참고하세요.</p></details>
   </div>
 </div></section>
@@ -379,7 +401,7 @@
 
 <!-- 모바일 하단 고정 결제 바 (스크롤 시 표시 · 가격/푸터 화면에선 숨김) -->
 <div class="m-bar" id="m-bar">
-  <div class="m-bar-info"><span data-i18n-html="mbar.price"><b>₩44,900</b> <s>₩74,900</s></span><br><span data-i18n="mbar.t">번들 · 선착순 100명 한정</span></div>
+  <div class="m-bar-info"><span data-i18n-html="mbar.price"><b>₩29,900</b> <s>₩49,900</s></span><br><span data-i18n="mbar.t">번들 · 선착순 100명 한정</span></div>
   <a class="m-bar-btn" id="m-buy" href="#pricing" data-i18n="mbar.buy">바로 결제 →</a>
 </div>
 
@@ -394,6 +416,7 @@
     "price.c3.amt": '$29.99 <small>USD</small>', "price.c3.was": "$52.98",
     "mbar.price": '<b>$29.99</b> <s>$52.98</s>',
     "pay.card": "💳 Pay by card", "pay.bank": "🏦 Bank transfer (KRW, Korea only)",
+    "pay.cardBuy": "💳 Pay by card — $14.99", "pay.bankBuy": "🏦 Bank transfer (KRW, Korea only)",
     "price.tleft": "⚡ Seats left", "mbar.t": "bundle · 100 seats only", "mbar.buy": "Buy now →",
     "mq.1": "📄 Live LaTeX compile", "mq.2": "📝 HWP·Word·PPT preview",
     "mq.3": "📊 Excel formats & formulas 100% kept", "mq.4": "🤖 Claude·Codex AI panel",
@@ -492,7 +515,7 @@
     "price.c3.l4":"⚡ Essentials only · keep asking afterwards",
     "price.c3.l5":"🎫 <b class=\"grad\">VIP beta tester · 100 seats only</b> · lifetime use locked in",
     "price.buyAll": "🍃 Buy chuverleaf now (card)",
-    "price.note": '💳 Card payments complete instantly · your download link is emailed <b>within 24 hours</b> · 7-day withdrawal (refund) available.<br><b>Plans that include 1:1 coaching (Coaching · Bundle) are ordered by bank transfer</b> — the session has to be scheduled with you, so we do not take card payments for those.<br>💻 macOS build is <b>Apple Silicon (M1 or newer)</b> only — it will not run on Intel Macs.',
+    "price.note": '💳 Card payments complete instantly · your download link is emailed <b>within 24 hours</b> · 7-day withdrawal (refund) available.<br><b>Plans that include 1:1 coaching (Coaching · Bundle) cannot be paid by card</b> — the session has to be scheduled with you. Bank transfer is Korea-only, so from outside Korea please use <b>✉ Email to order</b> on those cards.<br>💻 macOS build is <b>Apple Silicon (M1 or newer)</b> only — it will not run on Intel Macs.',
     "faq.h":"Frequently asked questions",
     "faq.q1":"How does the 1:1 AI coaching work?",
     "faq.a1":"<b>60 minutes, one to one.</b> Pick whichever suits you — <b>video call</b> or <b>in person</b> (Seoul). Instead of reading out a fixed curriculum, we open <b>the document you're actually writing</b> (paper, proposal, report — anything) and cover <b>only what you need</b>: using Claude Code·Codex directly on your files, and getting the most out of chuverleaf. We arrange a time by email after purchase, and you can <b>keep asking questions afterwards</b>.",
@@ -604,19 +627,32 @@
         set("pay-card-"+k, link);
       } else if (cardBtn) {
         var bankBtn = document.getElementById("pay-bank-"+k);
-        if (bankBtn) bankBtn.className = "btn-buy";   // 보조 링크 → 주 버튼
+        // ⚠ className 을 통째로 바꾸면 pay-bank 가 사라져 영어 모드 숨김(.en-mode .pay-bank)이
+        //   안 먹는다 — 국내 전용 표시는 .bank-promoted 마커로 넘겨 둔다.
+        if (bankBtn) bankBtn.className = "btn-buy bank-promoted";   // 보조 링크 → 주 버튼
         cardBtn.parentNode.removeChild(cardBtn);
       }
       set("pay-bank-"+k, C.formUrl);
     });
     // 통합 버튼은 **프로그램 단품**(Polar 로 팔 수 있는 유일한 상품)으로 보낸다.
     // 예전에는 번들 체크아웃이었는데, 번들에 코칭이 들어 있어 Polar 로 결제할 수 없다.
-    set("buy-all", C.polar && C.polar.program ? C.polar.program : C.formUrl);
+    // 국내(한국어)에서는 계좌이체가 ₩8,000 싸므로 주문서로 보내고, 계좌이체를 쓸 수 없는
+    // 영어 모드에서만 Polar 카드결제로 보낸다. 언어를 바꾸면 링크도 따라 바뀌어야 한다.
+    var buyAllHref = function(isEn){
+      var url = isEn ? (C.polar && C.polar.program) : C.formUrl;
+      var e = document.getElementById("buy-all");
+      if (e) { e.setAttribute("href", url || C.formUrl); }
+    };
     // 모바일 하단 바는 링크를 덮어쓰지 않는다 — 기본 href="#pricing" 으로 가격 섹션에
     // 내려보내고, 결제 수단은 각 카드에서 고르게 한다.
     // 영어 모드: 계좌이체(국내 전용) 버튼 숨김
     var langSelPay = document.getElementById("lang-select-hp");
-    var markEn = function(){ document.body.classList.toggle("en-mode", !!(langSelPay && langSelPay.value === "en")); };
+    var markEn = function(){
+      var isEn = !!(langSelPay && langSelPay.value === "en");
+      document.body.classList.toggle("en-mode", isEn);
+      buyAllHref(isEn);
+    };
+    buyAllHref(false);   // 언어 셀렉트가 없을 때의 기본 — 한국어(계좌이체)
     if (langSelPay) { markEn(); langSelPay.addEventListener("change", markEn); }
     var uc=document.getElementById("usercount");
     if(uc){

@@ -368,6 +368,75 @@ footer .copyr{margin-top:10px}
 .paybtns .pay-bank:hover{border-color:var(--acc);color:var(--acc);background:#fff}
 .price.best .paybtns .pay-bank{background:rgba(255,255,255,.05);border-color:#2a4433;color:#9fb0a4}
 .price.best .paybtns .pay-bank:hover{border-color:#7bf0b6;color:#7bf0b6}
+
+/* ─── 결제수단 가격 비교 — "계좌이체가 더 싸다" (2026-09-11) ───────────────
+   카드(Polar)는 MoR 수수료·해외결제 비용이 붙어 ₩8,000 비싸다. 국내 고객에게
+   그 차이를 숨기지 않고 표로 보여주고, 싼 쪽(계좌이체)을 주 버튼으로 세운다.
+   영어 모드는 계좌이체(국내 전용)가 불가능하므로 표를 감추고 카드를 주 버튼으로 되돌린다. */
+.paycompare{margin:10px 0 2px;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.pc-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;padding:9px 11px;font-size:13px;
+        border-bottom:1px solid var(--line)}
+.pc-way{font-weight:700;color:var(--mut);white-space:nowrap}
+.pc-amt{margin-left:auto;font-weight:800;font-variant-numeric:tabular-nums;color:var(--soft);white-space:nowrap}
+.pc-tag{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:999px;white-space:nowrap;
+        background:#f1f4f2;color:var(--soft)}
+.pc-best{background:#EAF9F0}
+.pc-best .pc-way{color:#166534}
+.pc-best .pc-amt{color:#166534;font-size:16px}
+.pc-best .pc-tag{background:#16A34A;color:#fff}
+.pc-why{margin:0;padding:8px 12px;font-size:11.5px;line-height:1.55;color:var(--soft);
+        background:#FAFBFA;border-top:1px solid var(--line)}
+.pc-why b{color:#166534}
+.en-mode .paycompare{display:none}
+
+/* 계좌이체를 주 버튼으로 세우는 카드(= 프로그램) */
+.paybtns.bank-first{flex-direction:column}
+.paybtns.bank-first .pay-bank{order:1;background:var(--grad);border:0;border-radius:14px;color:#fff;
+  font-size:15.5px;font-weight:800;padding:14px 12px;text-align:center;display:block;
+  box-shadow:0 12px 26px rgba(62,160,200,.32)}
+.paybtns.bank-first .pay-bank:hover{filter:brightness(1.07);transform:translateY(-2px);
+  background:var(--grad);color:#fff;border:0}
+.paybtns.bank-first .pay-card{order:2;background:none;border:1.5px dashed var(--line);border-radius:12px;
+  color:var(--soft);font-size:13px;font-weight:700;padding:10px;box-shadow:none;transform:none}
+.paybtns.bank-first .pay-card:hover{border-color:var(--acc);color:var(--acc);background:#fff;
+  transform:none;filter:none;box-shadow:none}
+.paybtns.bank-first .pay-card::after{display:none}
+/* 영어 모드 — 계좌이체 버튼이 사라지므로 카드가 다시 주 버튼 */
+.en-mode .paybtns.bank-first .pay-card{background:var(--grad);border:0;border-radius:14px;color:#fff;
+  font-size:16px;font-weight:800;padding:14px 12px;box-shadow:0 12px 26px rgba(62,160,200,.32)}
+.en-mode .paybtns.bank-first .pay-card:hover{filter:brightness(1.07);transform:translateY(-2px)}
+
+/* ⚠ 영어 모드 숨김은 우선순위 싸움이다. 기존 `.en-mode .pay-bank`(0,2,0) 은 위의
+   `.paybtns.bank-first .pay-bank`(0,3,0) 에 진다 — 더 구체적으로 다시 숨긴다.
+   그리고 JS 가 코칭·번들의 계좌이체를 주 버튼으로 올릴 때 className 을 갈아치우므로
+   `pay-bank` 가 사라진다. 그쪽은 `.bank-promoted` 마커로 잡는다. */
+.en-mode .paybtns.bank-first .pay-bank{display:none}
+.en-mode .bank-promoted{display:none}
+
+/* 계좌이체 전용 상품(코칭·번들) — 영어 모드에선 메일 주문 링크로 대체한다.
+   카드결제 버튼은 JS 가 지우고 계좌이체는 .en-mode 에서 숨겨져, 그냥 두면 살 방법이 없다. */
+.pay-mail{display:none}
+.en-mode .pay-mail{display:block;text-align:center;font-size:15px;font-weight:800;padding:14px 12px;
+  background:var(--grad);color:#fff;border-radius:14px;box-shadow:0 12px 26px rgba(62,160,200,.32)}
+.en-mode .pay-mail:hover{filter:brightness(1.07);transform:translateY(-2px);color:#fff}
+.bank-only{display:inline-block;font-size:11.5px;font-weight:800;color:#166534;
+  background:#EAF9F0;border-radius:999px;padding:3px 10px}
+.price.best .bank-only{background:rgba(123,240,182,.14);color:#7bf0b6}
+.en-mode .bank-only{display:none}
+/* 히어로·통합버튼 밑 한 줄 — 큰 숫자가 계좌이체가임을 밝힌다 */
+.pay-hint{margin:8px 0 0;font-size:12.5px;color:var(--soft)}
+.pay-hint b{color:#166534}
+.en-mode .pay-hint{display:none}
+/* ⚠ 좁은 화면 대비. 라벨('계좌이체')만 nowrap 이라 글자가 쪼개지지 않고, 자리가 모자라면
+   배지가 다음 줄로 내려간다 — 폭을 고정하면 잘려 나가므로 줄바꿈을 허용하는 쪽이 안전하다. */
+.prices .price{min-width:0}
+.paycompare,.pc-row{min-width:0}
+@media(max-width:430px){
+  .pc-row{font-size:12px;padding:8px 9px;gap:5px}
+  .pc-best .pc-amt{font-size:14.5px}
+  .pc-tag{font-size:10px;padding:2px 6px}
+  .pc-why{font-size:11px;padding:7px 9px}
+}
 #buy-all{background:var(--grad);box-shadow:0 14px 36px rgba(62,160,200,.4)}
 
 /* 모바일 하단 고정 결제 바 */
