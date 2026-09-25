@@ -1,7 +1,8 @@
 {
-  "latest": "1.6.5",
-  "url": "https://drive.google.com/uc?export=download&id=1IcfuXnBPquIqj71vIEwN7kMZDv3dub9p",
-  "download_win": "https://drive.google.com/uc?export=download&id=1IcfuXnBPquIqj71vIEwN7kMZDv3dub9p",
-  "download_mac": "https://drive.google.com/uc?export=download&id=1MLa5GOWXdjn1S3CG6UX8XZJueBYEjlR2",
-  "notes": "저널·학회 양식 52종 — 21종은 공식 양식을 자동으로 받아옵니다 · 화면 모드 3가지(어둡게·밝게·고대비)와 간단히/자세히 전환 · 한글 문서 변환이 빨라지고 보안 확인창을 자동 처리 · 워드·한글을 고쳐도 원본 서식 그대로 · 항목화(Enter·Tab)와 눈금자 · AI 스킬 30종을 클릭 한 번에 설치."
+  "latest": "1.6.6",
+  "url": "https://drive.google.com/uc?export=download&id=1vDDOY014HGgvEZmF0LeOUt2k1bZlc_AK",
+  "download_win": "https://drive.google.com/uc?export=download&id=1vDDOY014HGgvEZmF0LeOUt2k1bZlc_AK",
+  "download_mac": "https://drive.google.com/uc?export=download&id=16vqMMqH155C5iITcYpXkOhnXW9ucUfLV",
+  "notes": "설치기 하나로 끝(관리자 권한 불필요) · 처음 켤 때 Node.js·Claude Code·Codex·Gemini CLI 를 알아서 준비 · 스킬·명령마다 어느 AI 에서 되는지 C·X·G 표시와 세 AI 명령 대조표 · 🔌 플러그인 탭(Context7·Playwright·GitHub·Supabase 등) · 스킬 ❓ 설명과 사용 예시 · Enter 규칙 통일 · Word·PDF·엑셀 스킬의 파이썬을 자동 준비 · https 다운로드 실패·한글 깨짐·Node 없음 오진·Codex 캐시 오류 수정 · 스킬 32종.",
+  "installer_win": ""
 }
